@@ -1,4 +1,4 @@
-import { primary, status } from "@/styles/color"
+import { primary, status } from "@reactleaf/theme"
 import styled, { css } from "styled-components"
 
 export const reset = css`
