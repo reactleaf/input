@@ -14,7 +14,15 @@ export default meta
 type Story = StoryObj<typeof InputText>
 
 export const Default: Story = {
-  args: { value: "", label: "Label", placeholder: "Placeholder", type: "text", clearable: true },
+  args: {
+    value: "",
+    label: "Label",
+    placeholder: "Placeholder",
+    type: "text",
+    clearable: true,
+    readOnly: false,
+    disabled: false,
+  },
   argTypes: {
     type: {
       control: { type: "select" },
