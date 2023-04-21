@@ -7,9 +7,5 @@ export default function InputText(props: TextInputProps) {
   const [value, setValue] = React.useState("")
   useEffect(() => setValue(props.value), [props.value])
 
-  return (
-    <ThemeProvider theme={defaultTheme}>
-      <TextInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
-    </ThemeProvider>
-  )
+  return <TextInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
 }

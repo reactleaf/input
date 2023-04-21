@@ -1,4 +1,7 @@
+import React from "react"
+import { defaultTheme } from "@reactleaf/theme"
 import type { Preview } from "@storybook/react"
+import { ThemeProvider } from "styled-components"
 
 const preview: Preview = {
   parameters: {
@@ -11,6 +14,13 @@ const preview: Preview = {
       expanded: true,
     },
   },
+  decorators: [
+    (Story) => (
+      <ThemeProvider theme={defaultTheme}>
+        <Story />
+      </ThemeProvider>
+    ),
+  ],
 }
 
 export default preview
