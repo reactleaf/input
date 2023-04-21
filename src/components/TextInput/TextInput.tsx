@@ -7,42 +7,17 @@ import X from "@/icons/X"
 
 import * as CS from "../common.style"
 
-export interface Props {
-  value: string
+export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+  value?: string
   label?: string
-  type?: React.HTMLInputTypeAttribute
-  placeholder?: string
-  readOnly?: boolean
-  disabled?: boolean
   clearable?: boolean
-  autoComplete?: string
   errorMessage?: string
   formatter?: (value: string) => string
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void
-  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void
   onEnter?: (value: string) => void
 }
 
 export default React.forwardRef(function TextInput(
-  {
-    value,
-    label,
-    type = "text",
-    placeholder,
-    disabled = false,
-    readOnly = false,
-    clearable = true,
-    autoComplete,
-    errorMessage,
-    formatter = (v) => v,
-    onClick,
-    onChange,
-    onFocus,
-    onBlur,
-    onEnter,
-  }: Props,
+  { label, clearable = true, errorMessage, formatter = (v) => v, onFocus, onBlur, onEnter, ...inputProps }: Props,
   outerRef: React.Ref<HTMLInputElement>
 ) {
   const ref = useInnerRef(outerRef)
@@ -78,25 +53,16 @@ export default React.forwardRef(function TextInput(
     }
   }
 
+  const isFilled = inputProps.value
+  const isClearable = clearable && inputProps.value && !inputProps.disabled && !inputProps.readOnly
+  const isError = Boolean(errorMessage)
+
   return (
-    <CS.InputContainer className={cx("input-text", { filled: value, focused: isFocused, error: errorMessage })}>
+    <CS.InputContainer className={cx("input-text", { filled: isFilled, focused: isFocused, error: isError })}>
       <CS.LabelArea>{label && <label>{label}</label>}</CS.LabelArea>
       <CS.InputArea>
-        <CS.Input
-          ref={ref}
-          type={type}
-          value={value}
-          placeholder={placeholder}
-          onClick={onClick}
-          onChange={onChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onKeyDown={handleKeyDown}
-          readOnly={readOnly}
-          disabled={disabled}
-          autoComplete={autoComplete}
-        />
-        {!disabled && !readOnly && clearable && value && (
+        <CS.Input ref={ref} onFocus={handleFocus} onBlur={handleBlur} onKeyDown={handleKeyDown} {...inputProps} />
+        {isClearable && (
           <CS.ClearButton onClick={handleClear} tabIndex={-1}>
             <X size={16} />
           </CS.ClearButton>

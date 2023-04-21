@@ -12,4 +12,12 @@ Input.Text is a basic component of `@reactleaf/input`
 
 ## Props
 
-<Controls of={InputTextStories.Default} />
+`<Input.Text />` extends all props of `<input />`
+
+Below this is just basic props for storybook, but you can apply any props for `<input />`.
+
+<Controls of={InputTextStories.Default} exclude={["label", "clearable", "errorMessage", "formatter", "onEnter"]} />
+
+And it has some custom props:
+
+<Controls of={InputTextStories.Default} include={["label", "clearable", "errorMessage", "formatter", "onEnter"]} />
