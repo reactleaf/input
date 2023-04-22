@@ -1,0 +1,62 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks"
+import * as NumberInputStories from "./NumberInput.stories"
+
+<Meta of={NumberInputStories} />
+
+# \<NumberInput />
+
+NumberInput is a special input to handle number input.
+
+<Canvas of={NumberInputStories.Default} />
+<Canvas of={NumberInputStories.Formatter} />
+
+### Use in `react-hook-form`
+
+Freely choose `register()` or `<Controller />` of `react-hook-form` to handle input in form.
+
+But when you use `formatter`, input type will changed to `string` \
+so using `register()` is not recommended in the case.
+
+```tsx
+import { TextInput } from "@reactleaf/input"
+
+function FormComponent() {
+  const { control } = useForm()
+  return (
+    <>
+      {/* simple number input can be used with register() */}
+      <NumberInput label="Simple" {...register("simple")} />
+
+      {/* with formatter, using <Controller /> is recommended */}
+      <Controller
+        name="withFormatter"
+        control={control}
+        render={({ field: { value, onChange, ...field }, fieldState }) => (
+          <NumberInput
+            label="WithFormatter"
+            {...field}
+            formatter={customFormat.formatter}
+            parser={customFormat.parser}
+            onValueChange={onChange}
+            errorMessage={fieldState.error.message}
+          />
+        )}
+      />
+    </>
+  )
+}
+```
+
+## Props
+
+`<NumberInput />` extends almost all props of `<input />` like `<TextInput />`
+and supports special handling for `min`, `max`, `step` and `formatter`.
+
+> **WARNING** \
+> if you set `formatter` then `e.target.value` from `onChange` will be **formatted string**, \
+> if you want to get numeric value while using formatter, use `onValueChange` instead.
+
+<Controls
+  of={NumberInputStories.Default}
+  include={["label", "clearable", "errorMessage", "step", "onValueChange", "onEnter", "formatter", "parser"]}
+/>

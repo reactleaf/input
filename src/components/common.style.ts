@@ -5,6 +5,10 @@ export const reset = css`
   input {
     border: none;
     outline: none;
+    ::placeholder {
+      color: ${primary(80)};
+      font-weight: 200;
+    }
   }
   button {
     padding: 0;
@@ -59,7 +63,6 @@ export const InputContainer = styled.div`
     ${() => css`
       ${InputArea} {
         background-color: ${primary(90)};
-        -webkit-placeholder: ${primary(80)};
       }
     `}
   }

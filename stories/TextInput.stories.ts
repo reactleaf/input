@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { defaultFalse } from "@/utils/storybook"
 import TextInput from "@/components/TextInput"
 
 const meta: Meta<typeof TextInput> = {
@@ -18,20 +17,42 @@ export const Default: Story = {
     placeholder: "Placeholder",
     errorMessage: "",
     clearable: true,
+    disabled: false,
+    readOnly: false,
   },
   argTypes: {
+    label: {
+      description: "label for input",
+      table: { type: { summary: "string" } },
+    },
     placeholder: {
       table: { type: { summary: "string" } },
     },
-    clearable: defaultFalse,
+    clearable: {
+      description: "Clear button appears when value is filled",
+      defaultValue: { summary: "false" },
+      table: { type: { summary: "boolean" } },
+    },
+    disabled: {
+      defaultValue: { summary: "false" },
+      table: { type: { summary: "boolean" } },
+    },
+    readOnly: {
+      defaultValue: { summary: "false" },
+      table: { type: { summary: "boolean" } },
+    },
     formatter: {
-      description: "Format string right before onChange called",
+      description: "As default, add commas to number",
+      defaultValue: { summary: "s => s" },
+      table: { type: { summary: "(value: string) => string" } },
     },
     errorMessage: {
       description: "Error message that makes input red if exists",
+      table: { type: { summary: "string" } },
     },
     onEnter: {
-      description: "Special handler for enter key",
+      description: "Called when enter key is pressed",
+      table: { type: { summary: "(value: string) => void" } },
     },
   },
 }

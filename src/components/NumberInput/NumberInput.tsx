@@ -7,16 +7,33 @@ import X from "@/icons/X"
 
 import * as CS from "../common.style"
 
-export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
   label?: string
   clearable?: boolean
   errorMessage?: string
-  formatter?: (value: string) => string
-  onEnter?: (value: string) => void
+  step?: number
+  min?: number
+  max?: number
+  onValueChange?: (value: number) => void
+  onEnter?: (value: number) => void
+  formatter?: (value: number) => string
+  parser?: (value: string) => number
 }
 
-export default React.forwardRef(function TextInput(
-  { label, clearable = true, errorMessage, formatter = (v) => v, onEnter, ...inputProps }: Props,
+export default React.forwardRef(function NumberInput(
+  {
+    label,
+    clearable = true,
+    errorMessage,
+    step = 1,
+    min = 0,
+    max,
+    onValueChange,
+    onEnter,
+    formatter = formatNumber,
+    parser = parseNumber,
+    ...inputProps
+  }: Props,
   outerRef: React.Ref<HTMLInputElement>
 ) {
   const ref = useInnerRef(outerRef)
@@ -27,12 +44,23 @@ export default React.forwardRef(function TextInput(
     return value !== "" && value !== undefined
   }
 
+  function applyFormatter(e: React.SyntheticEvent<HTMLInputElement>) {
+    let newValue = parseNumber(e.currentTarget.value)
+    if (typeof min === "number" && newValue < min) {
+      newValue = min
+    } else if (typeof max === "number" && max < newValue) {
+      newValue = max
+    }
+    return formatter(newValue)
+  }
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const formattedValue = formatter(e.currentTarget.value)
+    const formattedValue = applyFormatter(e)
     if (ref.current) {
       ref.current.value = formattedValue
     }
     inputProps.onChange?.(e)
+    onValueChange?.(parser(formattedValue))
     setFilled(isFilled(e.target.value))
   }
 
@@ -48,9 +76,24 @@ export default React.forwardRef(function TextInput(
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     inputProps.onKeyDown?.(e)
+    const value = parser(e.currentTarget.value)
+
     if (e.key === "Enter") {
-      const newValue = formatter(e.currentTarget.value)
-      onEnter?.(newValue)
+      onEnter?.(value)
+    }
+
+    const arrowStep = e.shiftKey ? step * 10 : step
+    if (e.key === "ArrowDown") {
+      const stepDownValue = (value || 0) - arrowStep
+      const newValue = Math.max(min, stepDownValue)
+      changeValue(formatter(newValue))
+      e.preventDefault()
+    }
+    if (e.key === "ArrowUp") {
+      const stepUpValue = (value || 0) + arrowStep
+      const newValue = max === undefined ? stepUpValue : Math.min(stepUpValue, max)
+      changeValue(formatter(newValue))
+      e.preventDefault()
     }
   }
 
@@ -72,9 +115,11 @@ export default React.forwardRef(function TextInput(
   const isClearable = clearable && filled && !inputProps.disabled && !inputProps.readOnly
   const isError = Boolean(errorMessage)
 
+  console.log("render")
+
   return (
     <CS.InputContainer
-      className={cx("text-input", {
+      className={cx("number-input", {
         filled,
         focused,
         error: isError,
@@ -85,11 +130,13 @@ export default React.forwardRef(function TextInput(
       <CS.InputArea>
         <CS.Input
           {...inputProps}
+          type={formatter === formatNumber ? "number" : "text"}
           ref={ref}
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
+          // style={{ textAlign: "right" }}
         />
         {isClearable && (
           <CS.ClearButton onClick={handleClear} tabIndex={-1}>
@@ -101,3 +148,17 @@ export default React.forwardRef(function TextInput(
     </CS.InputContainer>
   )
 })
+
+function parseNumber(value?: string) {
+  if (!value) return NaN
+  const cleanPattern = new RegExp(`[^-+0-9.]`, "g")
+  const cleaned = value.replace(cleanPattern, "")
+
+  return parseFloat(cleaned)
+}
+
+function formatNumber(value?: number) {
+  if (value === undefined) return ""
+  if (isNaN(value)) return ""
+  return value.toString()
+}
