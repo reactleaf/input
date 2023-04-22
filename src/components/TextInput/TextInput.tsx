@@ -25,7 +25,15 @@ export default React.forwardRef(function TextInput(
     isFocused: false,
   })
 
+  function applyFormatter(e: React.SyntheticEvent<HTMLInputElement>) {
+    if (!ref.current) return
+    const newValue = formatter(e.currentTarget.value)
+    ref.current.value = newValue
+    return newValue
+  }
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    applyFormatter(e)
     inputProps.onChange?.(e)
     setState((s) => ({ ...s, isFilled: Boolean(e.target.value) }))
   }
@@ -41,23 +49,22 @@ export default React.forwardRef(function TextInput(
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    const newValue = formatter(e.currentTarget.value)
+    inputProps.onKeyDown?.(e)
     if (e.key === "Enter") {
+      const newValue = formatter(e.currentTarget.value)
       onEnter?.(newValue)
-    }
-    if (ref.current) {
-      ref.current.value = newValue
     }
   }
 
   function handleClear() {
-    if (ref.current) {
-      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")?.set
-      nativeInputValueSetter?.call(ref.current, "")
+    if (!ref.current) return
 
-      const event = new Event("input", { bubbles: true })
-      ref.current.dispatchEvent(event)
-    }
+    // trigger changed event
+    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")?.set
+    nativeInputValueSetter?.call(ref.current, "")
+
+    const event = new Event("input", { bubbles: true })
+    ref.current.dispatchEvent(event)
   }
 
   const isClearable = clearable && state.isFilled && !inputProps.disabled && !inputProps.readOnly
@@ -65,7 +72,12 @@ export default React.forwardRef(function TextInput(
 
   return (
     <CS.InputContainer
-      className={cx("input-text", { filled: state.isFilled, focused: state.isFocused, error: isError })}
+      className={cx("text-input", {
+        filled: state.isFilled,
+        focused: state.isFocused,
+        error: isError,
+        disabled: inputProps.disabled,
+      })}
     >
       <CS.LabelArea>{label && <label>{label}</label>}</CS.LabelArea>
       <CS.InputArea>
