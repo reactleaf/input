@@ -1,23 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import InputText from "./InputText"
 import { defaultFalse } from "@/utils/storybook"
+import TextInput from "@/components/TextInput"
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
-const meta: Meta<typeof InputText> = {
-  title: "Example/Input.Text",
-  component: InputText,
+const meta: Meta<typeof TextInput> = {
+  title: "Components/TextInput",
+  component: TextInput,
 }
 
 export default meta
 
-type Story = StoryObj<typeof InputText>
+type Story = StoryObj<typeof TextInput>
 
 export const Default: Story = {
   args: {
-    value: "",
     label: "Label",
     placeholder: "Placeholder",
+    errorMessage: "",
     clearable: true,
   },
   argTypes: {
@@ -27,6 +26,9 @@ export const Default: Story = {
     clearable: defaultFalse,
     formatter: {
       description: "Format string right before onChange called",
+    },
+    errorMessage: {
+      description: "Error message that makes input red if exists",
     },
     onEnter: {
       description: "Special handler for enter key",

@@ -1,0 +1,21 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks"
+import * as TextInputStories from "./TextInput.stories"
+
+<Meta of={TextInputStories} />
+
+# \<TextInput />
+
+TextInput is a basic component of `@reactleaf/input`. \
+This component simply extends `<input type="text" />`
+
+Surely, handle this input as controlled or uncontrolled is up to you. \
+So, you can freely choose `register()` or `<Controller />` of `react-hook-form` to handle input in form.
+
+<Canvas of={TextInputStories.Default} />
+
+## Props
+
+`<TextInput />` extends all props of `<input />` \
+Below this is just custom props that `<TextInput />` provides, and you can apply any props for `<input />`.
+
+<Controls of={TextInputStories.Default} include={["label", "clearable", "errorMessage", "formatter", "onEnter"]} />
