@@ -4,8 +4,14 @@
   "description": "Variable React Input components",
   "main": "index.ts",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/reactleaf/input.git",
-  "author": "양현석 <fourwingsy@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reactleaf/input.git"
+  },
+  "author": {
+    "name": "양현석",
+    "email": "fourwingsy@gmail.com"
+  },
   "license": "MIT",
   "dependencies": {
     "@reactleaf/theme": "^1.0.0",
@@ -28,6 +34,7 @@
     "@storybook/testing-library": "^0.0.14-next.2",
     "@types/color": "^3.0.3",
     "@types/styled-components": "^5.1.26",
+    "chromatic": "^6.17.3",
     "eslint": "^8.38.0",
     "prettier": "^2.8.7",
     "prop-types": "^15.8.1",
@@ -38,6 +45,13 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "tsc"
-  }
+    "build": "tsc",
+    "chromatic": "chromatic --project-token=baa9a92dee01"
+  },
+  "bugs": {
+    "url": "https://github.com/reactleaf/input/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/reactleaf/input#readme",
+  "_id": "input@0.0.1"
 }

@@ -31,6 +31,7 @@ function FormComponent() {
             label="WithFormatter"
             {...field}
             formatter={customFormat.formatter}
+            max={999_999_999}
             parser={customFormat.parser}
             onValueChange={onChange}
             errorMessage={fieldState.error.message}
