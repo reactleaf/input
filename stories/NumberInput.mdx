@@ -12,10 +12,8 @@ NumberInput is a special input to handle number input.
 
 ### Use in `react-hook-form`
 
-Freely choose `register()` or `<Controller />` of `react-hook-form` to handle input in form.
-
-But when you use `formatter`, input type will changed to `string` \
-so using `register()` is not recommended in the case.
+`onChange` in `<NumberInput />` will return formatted `string` value, \
+so using `register()` is not recommended in this component.
 
 ```tsx
 import { TextInput } from "@reactleaf/input"
@@ -24,10 +22,7 @@ function FormComponent() {
   const { control } = useForm()
   return (
     <>
-      {/* simple number input can be used with register() */}
-      <NumberInput label="Simple" {...register("simple")} />
-
-      {/* with formatter, using <Controller /> is recommended */}
+      {/* using <Controller /> is recommended */}
       <Controller
         name="withFormatter"
         control={control}
@@ -49,12 +44,12 @@ function FormComponent() {
 
 ## Props
 
-`<NumberInput />` extends almost all props of `<input />` like `<TextInput />`
-and supports special handling for `min`, `max`, `step` and `formatter`.
+`<NumberInput />` extends almost all props of `<input />` like `<TextInput />`, but excetps, `type`.
 
 > **WARNING** \
-> if you set `formatter` then `e.target.value` from `onChange` will be **formatted string**, \
-> if you want to get numeric value while using formatter, use `onValueChange` instead.
+> `@reactleaf/input` extends basic `<input />`, so `onChange` recieves `event` as a parameter. \
+> Reading `event.currentTarget.value` from event listeners would be a text value, not a number. \
+> If you want to get numeric value, use `onValueChange` instead.
 
 <Controls
   of={NumberInputStories.Default}

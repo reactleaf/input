@@ -75,14 +75,14 @@ export const Default: Story = {
 
 export const Formatter: Story = {
   args: {
-    label: "Comma separated number",
-    placeholder: "XXX,XXX,XXX",
+    label: "Using comma-separate formatter",
+    placeholder: "$ xxx,xxx,xxx",
     errorMessage: "",
     clearable: true,
     disabled: false,
     readOnly: false,
     min: -9999999,
     step: 100,
-    formatter: (value) => (value ? value.toLocaleString() : ""),
+    formatter: (value) => (value ? `$ ${value.toLocaleString()}` : "$ "),
   },
 }

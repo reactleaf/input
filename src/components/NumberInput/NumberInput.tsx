@@ -44,18 +44,24 @@ export default React.forwardRef(function NumberInput(
     return value !== "" && value !== undefined
   }
 
-  function applyFormatter(e: React.SyntheticEvent<HTMLInputElement>) {
-    let newValue = parseNumber(e.currentTarget.value)
-    if (typeof min === "number" && newValue < min) {
-      newValue = min
-    } else if (typeof max === "number" && max < newValue) {
-      newValue = max
+  // do not format while inputting -0.00x
+  function isWatiable(value: string) {
+    const regex = /^-?0?\.?0*$/
+    return regex.test(value)
+  }
+
+  function setInRange(value: number) {
+    if (typeof min === "number" && value < min) {
+      value = min
+    } else if (typeof max === "number" && max < value) {
+      value = max
     }
-    return formatter(newValue)
+    return value
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const formattedValue = applyFormatter(e)
+    if (isWatiable(e.currentTarget.value)) return
+    const formattedValue = formatter(parseNumber(e.currentTarget.value))
     if (ref.current) {
       ref.current.value = formattedValue
     }
@@ -72,6 +78,11 @@ export default React.forwardRef(function NumberInput(
   function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
     inputProps.onBlur?.(e)
     setFocused(false)
+
+    // check if value is in range, if not, set to min or max
+    if (isWatiable(e.currentTarget.value)) return
+    const inRangeValue = setInRange(parseNumber(e.currentTarget.value))
+    changeValue(formatter(inRangeValue))
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -115,8 +126,6 @@ export default React.forwardRef(function NumberInput(
   const isClearable = clearable && filled && !inputProps.disabled && !inputProps.readOnly
   const isError = Boolean(errorMessage)
 
-  console.log("render")
-
   return (
     <CS.InputContainer
       className={cx("number-input", {
@@ -130,13 +139,12 @@ export default React.forwardRef(function NumberInput(
       <CS.InputArea>
         <CS.Input
           {...inputProps}
-          type={formatter === formatNumber ? "number" : "text"}
+          type="text"
           ref={ref}
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          // style={{ textAlign: "right" }}
         />
         {isClearable && (
           <CS.ClearButton onClick={handleClear} tabIndex={-1}>
