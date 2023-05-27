@@ -19,33 +19,33 @@ so using `register()` is not recommended in this component.
 import { TextInput } from "@reactleaf/input"
 
 function FormComponent() {
-  const { control } = useForm()
+  const { control } = useFormContext()
+
   return (
-    <>
-      {/* using <Controller /> is recommended */}
-      <Controller
-        name="withFormatter"
-        control={control}
-        render={({ field: { value, onChange, ...field }, fieldState }) => (
-          <NumberInput
-            label="WithFormatter"
-            {...field}
-            formatter={customFormat.formatter}
-            max={999_999_999}
-            parser={customFormat.parser}
-            onValueChange={onChange}
-            errorMessage={fieldState.error.message}
-          />
-        )}
-      />
-    </>
+    <Controller
+      name="withFormatter"
+      control={control}
+      render={({ field, fieldState }) => (
+        <NumberInput
+          label="WithFormatter"
+          min={-999_999_999}
+          max={999_999_999}
+          formatter={customFormat.formatter}
+          parser={customFormat.parser}
+          onValueChange={field.onChange} // <- This is important
+          onFocus={field.onFocus}
+          onBlur={field.onBlur}
+          errorMessage={fieldState.error.message}
+        />
+      )}
+    />
   )
 }
 ```
 
 ## Props
 
-`<NumberInput />` extends almost all props of `<input />` like `<TextInput />`, but excetps, `type`.
+`<NumberInput />` extends almost all props of `<input />` like `<TextInput />`, but excepts, `type`.
 
 > **WARNING** \
 > `@reactleaf/input` extends basic `<input />`, so `onChange` recieves `event` as a parameter. \
