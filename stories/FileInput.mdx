@@ -1,0 +1,69 @@
+import { Canvas, Meta, Controls } from "@storybook/blocks"
+import * as FileInputStories from "./FileInput.stories"
+
+<Meta of={FileInputStories} />
+
+# \<FileInput />
+
+FileInput is a special input to handle File input.
+
+<Canvas of={FileInputStories.Default} />
+
+## Value Type of \<FileInput />
+
+While we are using forms, create and update forms are quite similar. They are almost same.
+To handle those forms, we sometimes need to handle two different forms or inputs.
+
+`<FileInput />` solves the problem by using `FileSource` type.
+
+Now when we handle some file form, you just don't need to know the file is selected just right before the browser or uploaded long time ago.
+
+```ts
+type FileSource = UploadedFile | SelectedFile
+interface UploadedFile {
+  type: "url"
+  url: string
+}
+
+interface SelectedFile {
+  type: "file"
+  file: File | null
+}
+```
+
+### Use in `react-hook-form`
+
+`onChange` in `<FileInput />` will return formatted `string` value, \
+so using `register()` is not recommended in this component.
+
+```tsx
+import { FileInput } from "@reactleaf/input"
+
+function FormComponent() {
+  const { control } = useFormContext()
+
+  return (
+    <Controller
+      name="file"
+      control={control}
+      render={({ field, fieldState }) => (
+        <FileInput label="Just some files" {...field} errorMessage={fieldState.error.message} />
+      )}
+    />
+  )
+}
+```
+
+## Props
+
+`<FileInput />` extends almost all props of `<input />` like `<TextInput />`, but excepts, `type`.
+
+> **WARNING** \
+> `@reactleaf/input` extends basic `<input />`, so `onChange` recieves `event` as a parameter. \
+> Reading `event.currentTarget.value` from event listeners would be a text value, not a File. \
+> If you want to get numeric value, use `onValueChange` instead.
+
+<Controls
+  of={FileInputStories.Default}
+  include={["label", "clearable", "errorMessage", "step", "onValueChange", "onEnter", "formatter", "parser"]}
+/>

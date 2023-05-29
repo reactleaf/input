@@ -19,8 +19,24 @@ So, you can freely choose `register()` or `<Controller />` of `react-hook-form` 
 import { TextInput } from "@reactleaf/input"
 
 function FormComponent() {
-  const { register } = useForm()
-  return <TextInput label="Name" {...register("name")} />
+  const { register, formState } = useForm()
+  // Easy way using register()
+  // return <TextInput label="Name" {...register("name")} errorMessage={formState.error["name"]} />
+
+  return (
+    <Controller
+      name="name"
+      control={control}
+      render={({ field, fieldState }) => (
+        <TextInput
+          label="Name"
+          value={field.value}
+          onValueChange={field.onChange}
+          errorMessage={fieldState.error.message}
+        />
+      )}
+    />
+  )
 }
 ```
 

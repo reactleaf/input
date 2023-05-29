@@ -10,10 +10,6 @@ export const reset = css`
       font-weight: 200;
     }
   }
-  button {
-    padding: 0;
-    border: none;
-  }
   p {
     margin: 0;
   }
@@ -114,6 +110,8 @@ export const ClearButton = styled.button.attrs({ type: "button" })`
   transform: translate(-0.25rem, -50%);
   width: 1rem;
   height: 1rem;
+  padding: 0;
+  border: none;
   background: ${primary(95)};
   border-radius: 50%;
   line-height: 0;

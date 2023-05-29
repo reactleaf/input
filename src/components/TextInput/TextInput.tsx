@@ -11,12 +11,22 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string
   clearable?: boolean
   errorMessage?: string
+  onValueChange?: (value: string) => void
   formatter?: (value: string) => string
   onEnter?: (value: string) => void
 }
 
 export default React.forwardRef(function TextInput(
-  { label, clearable = true, errorMessage, formatter = (v) => v, onEnter, ...inputProps }: Props,
+  {
+    label,
+    clearable = true,
+    errorMessage,
+    onChange,
+    onValueChange,
+    formatter = (v) => v,
+    onEnter,
+    ...inputProps
+  }: Props,
   outerRef: React.Ref<HTMLInputElement>
 ) {
   const ref = useInnerRef(outerRef)
@@ -32,7 +42,8 @@ export default React.forwardRef(function TextInput(
     if (ref.current) {
       ref.current.value = formattedValue
     }
-    inputProps.onChange?.(e)
+    onChange?.(e)
+    onValueChange?.(formattedValue)
     setFilled(isFilled(e.target.value))
   }
 
