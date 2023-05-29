@@ -1,0 +1,44 @@
+# @reactleaf/input
+
+`@reactleaf/input` is a set of input components.
+
+## Motivation
+
+I used to handle forms with `react-hook-form`. But some UI libraries needs to be wrapped by `<Controller />` of `react-hook-form`.
+So I made my own components that are perfectly compatible with `react-hook-form`, but I encounted some cases, that `hook-form` is over-engineered.
+
+`@reactleaf/input` is designed for usecases that are compatible with `react-hook-form`, but can be used without `react-hook-form`.
+
+## Installation
+
+```sh
+yarn add @reactleaf/input
+```
+
+## Examples
+
+### With `react-hook-form`
+
+```tsx
+import { TextInput } from "@reactleaf/input/with-hook-form"
+
+function FormComponent() {
+  const form = useForm({ defaultValues: { street1: "" } })
+  return (
+    <FormContextProvider {...form}>
+      <TextInput name="street1" label="Street 1" />
+    </FormContextProvider>
+  )
+}
+```
+
+### Just as uncontrolled input
+
+```tsx
+import { TextInput } from "@reactleaf/input"
+
+function FormComponent() {
+  const [value, setValue] = useState("")
+  return <TextInput label="Street 1" value={value} onValueChange={(v) => setValue(v)} />
+}
+```
