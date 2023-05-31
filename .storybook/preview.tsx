@@ -14,6 +14,11 @@ const preview: Preview = {
       },
       expanded: true,
     },
+    options: {
+      storySort: {
+        order: ["Getting Started", "Components", ["TextInput", "NumberInput", "FileInput"]],
+      },
+    },
   },
   decorators: [
     (Story) => (
