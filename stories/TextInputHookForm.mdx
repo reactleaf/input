@@ -1,0 +1,37 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/blocks"
+import * as Stories from "./TextInputHookForm.stories"
+
+<Meta name="HookForm" of={Stories} />
+
+# \<TextInput.HookForm />
+
+TextInput.HookForm is a `react-hook-form` support version of TextInput. \
+This component simply extends `<input type="text" />` with styles
+
+<Canvas of={Stories.HookForm} />
+
+### Usage
+
+```tsx
+import { useForm, FormProvider } from "react-hook-form"
+import { TextInput } from "@reactleaf/input"
+
+function FormComponent() {
+  const form = useForm()
+
+  return (
+    <FormProvider {...form}>
+      <TextInput.HookForm name="name" label="Name" />
+    </FormProvider>
+  )
+}
+```
+
+### Extended Props
+
+`<TextInput.HookForm />` is almost same with `<TextInput />`
+and also receive props for `<Controller />` such as `name` or `rules`
+
+- `value` - is excluded. `value` is handled by `react-hook-form`.
+
+<ArgTypes of={Stories.HookForm} include={["name", "label", "clearable", "formatter", "onValueChange", "onEnter"]} />

@@ -36,9 +36,10 @@
     "@types/styled-components": "^5.1.26",
     "chromatic": "^6.17.3",
     "eslint": "^8.38.0",
+    "install-peers-cli": "^2.2.0",
     "prettier": "^2.8.7",
     "prop-types": "^15.8.1",
-    "storybook": "^7.0.4",
+    "storybook": "^7.0.18",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
     "typescript": "^5.0.4"
   },
@@ -46,12 +47,16 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build": "tsc",
-    "chromatic": "chromatic --project-token=baa9a92dee01"
+    "chromatic": "chromatic --project-token=baa9a92dee01",
+    "prepare": "install-peers"
   },
   "bugs": {
     "url": "https://github.com/reactleaf/input/issues"
   },
   "readme": "ERROR: No README data found!",
   "homepage": "https://github.com/reactleaf/input#readme",
-  "_id": "input@0.0.1"
+  "_id": "input@0.0.1",
+  "peerDependencies": {
+    "react-hook-form": "^7"
+  }
 }

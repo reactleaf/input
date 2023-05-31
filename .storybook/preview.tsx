@@ -2,6 +2,7 @@ import React from "react"
 import { defaultTheme } from "@reactleaf/theme"
 import type { Preview } from "@storybook/react"
 import { ThemeProvider } from "styled-components"
+import { FormProvider, useForm } from "react-hook-form"
 
 const preview: Preview = {
   parameters: {
@@ -17,10 +18,17 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <ThemeProvider theme={defaultTheme}>
-        <Story />
+        <EmptyFormProvider>
+          <Story />
+        </EmptyFormProvider>
       </ThemeProvider>
     ),
   ],
 }
 
 export default preview
+
+function EmptyFormProvider({ children }: { children: React.ReactNode }) {
+  const form = useForm()
+  return <FormProvider {...form}>{children}</FormProvider>
+}
