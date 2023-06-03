@@ -6,6 +6,7 @@ import useInnerRef from "@/hooks/useInnerRef"
 import X from "@/icons/X"
 
 import * as CS from "../common.style"
+import { Canvas } from "@storybook/blocks"
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
   label?: string

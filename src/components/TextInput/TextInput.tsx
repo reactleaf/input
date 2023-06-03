@@ -12,21 +12,11 @@ export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   clearable?: boolean
   errorMessage?: string
   onValueChange?: (value: string) => void
-  formatter?: (value: string) => string
   onEnter?: (value: string) => void
 }
 
 export default React.forwardRef(function TextInput(
-  {
-    label,
-    clearable = true,
-    errorMessage,
-    onChange,
-    onValueChange,
-    formatter = (v) => v,
-    onEnter,
-    ...inputProps
-  }: Props,
+  { label, clearable = true, errorMessage, onChange, onValueChange, onEnter, ...inputProps }: Props,
   outerRef: React.Ref<HTMLInputElement>
 ) {
   const ref = useInnerRef(outerRef)
@@ -38,12 +28,12 @@ export default React.forwardRef(function TextInput(
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const formattedValue = formatter(e.currentTarget.value)
+    const value = e.currentTarget.value
     if (ref.current) {
-      ref.current.value = formattedValue
+      ref.current.value = value
     }
     onChange?.(e)
-    onValueChange?.(formattedValue)
+    onValueChange?.(value)
     setFilled(isFilled(e.target.value))
   }
 
@@ -60,8 +50,7 @@ export default React.forwardRef(function TextInput(
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     inputProps.onKeyDown?.(e)
     if (e.key === "Enter") {
-      const newValue = formatter(e.currentTarget.value)
-      onEnter?.(newValue)
+      onEnter?.(e.currentTarget.value)
     }
   }
 

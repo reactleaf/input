@@ -44,11 +44,6 @@ export const HookForm: StoryObj<typeof TextInput.HookForm> = {
       defaultValue: { summary: "false" },
       table: { type: { summary: "boolean" } },
     },
-    formatter: {
-      description: "As default, add commas to number",
-      defaultValue: { summary: "s => s" },
-      table: { type: { summary: "(value: string) => string" } },
-    },
     onValueChange: {
       action: "onValueChange",
       description: "Called when value is changed",

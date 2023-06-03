@@ -1,14 +1,14 @@
 import React from "react"
-import TextInputPure, { Props } from "./TextInput"
+import NumberInputPure, { Props } from "./NumberInput"
 import { Controller, UseControllerProps } from "react-hook-form"
 
 interface HookFormProps extends Omit<Props, "name" | "defaultValue" | "value" | "errorMessage">, UseControllerProps {}
 
-function TextInput(props: Props) {
-  return <TextInputPure {...props} />
+function NumberInput(props: Props) {
+  return <NumberInputPure {...props} />
 }
 
-TextInput.HookForm = (props: HookFormProps) => {
+NumberInput.HookForm = (props: HookFormProps) => {
   const { name, rules, defaultValue, control, shouldUnregister, ...inputProps } = props
   const controllerProps = { name, rules, defaultValue, control, shouldUnregister }
 
@@ -16,7 +16,7 @@ TextInput.HookForm = (props: HookFormProps) => {
     <Controller
       {...controllerProps}
       render={({ field, fieldState }) => (
-        <TextInputPure
+        <NumberInputPure
           {...inputProps}
           name={field.name}
           value={field.value}
@@ -36,4 +36,4 @@ TextInput.HookForm = (props: HookFormProps) => {
   )
 }
 
-export default TextInput
+export default NumberInput

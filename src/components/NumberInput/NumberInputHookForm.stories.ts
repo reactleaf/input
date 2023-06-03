@@ -11,43 +11,13 @@ export default meta
 
 type Story = StoryObj<typeof NumberInput>
 
-export const Basic: Story = {
+export const HookForm: Story = {
+  name: "Example with HookForm",
   args: {
-    label: "Label",
-    placeholder: "Put some numbers",
-    clearable: true,
-  },
-}
-
-export const Formatter: Story = {
-  args: {
-    label: "Using comma-separate formatter",
-    placeholder: "$ xxx,xxx,xxx",
-    clearable: true,
-    min: -999_999_999,
-    max: 999_999_999,
-    step: 100,
-    formatter: (value) => (value ? `$ ${value.toLocaleString()}` : "$ "),
-  },
-}
-
-export const Disabled: Story = {
-  args: {
-    label: "Disabled",
-    placeholder: "Put some numbers",
-    disabled: true,
-  },
-}
-
-export const Playground: Story = {
-  args: {
+    name: "amount",
     label: "Amount",
     placeholder: "Placeholder",
     clearable: true,
-    min: -999_999_999,
-    max: 999_999_999,
-    step: 100,
-    formatter: (value) => (value ? `$ ${value.toLocaleString()}` : "$ "),
   },
   argTypes: {
     label: {

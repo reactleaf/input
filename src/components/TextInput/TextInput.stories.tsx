@@ -13,8 +13,6 @@ export const Basic: StoryObj<typeof TextInput> = {
     label: "Label",
     placeholder: "Placeholder",
     clearable: true,
-    disabled: false,
-    readOnly: false,
   },
 }
 
@@ -36,43 +34,26 @@ export const Playground: StoryObj<typeof TextInput> = {
   },
   argTypes: {
     label: {
-      description: "label for input",
-      table: { type: { summary: "string" } },
+      table: { type: { summary: "string" }, category: "Extended Props" },
     },
-    placeholder: {
-      table: { type: { summary: "string" } },
+    errorMessage: {
+      description: "Error message that makes input red if exists",
+      table: { type: { summary: "string" }, category: "Extended Props" },
     },
     clearable: {
       description: "Clear button appears when value is filled",
       defaultValue: { summary: "false" },
-      table: { type: { summary: "boolean" } },
-    },
-    disabled: {
-      defaultValue: { summary: "false" },
-      table: { type: { summary: "boolean" } },
-    },
-    readOnly: {
-      defaultValue: { summary: "false" },
-      table: { type: { summary: "boolean" } },
-    },
-    errorMessage: {
-      description: "Error message that makes input red if exists",
-      table: { type: { summary: "string" } },
-    },
-    formatter: {
-      description: "As default, add commas to number",
-      defaultValue: { summary: "s => s" },
-      table: { type: { summary: "(value: string) => string" } },
+      table: { type: { summary: "boolean" }, category: "Extended Props" },
     },
     onValueChange: {
       action: "onValueChange",
       description: "Called when value is changed",
-      table: { type: { summary: "(value: string) => void" } },
+      table: { type: { summary: "(value: string) => void" }, category: "events" },
     },
     onEnter: {
       action: "onEnter",
       description: "Called when enter key is pressed",
-      table: { type: { summary: "(value: string) => void" } },
+      table: { type: { summary: "(value: string) => void" }, category: "events" },
     },
   },
 }

@@ -1,0 +1,36 @@
+import { Canvas, Meta, ArgTypes } from "@storybook/blocks"
+import * as Stories from "./NumberInputHookForm.stories"
+
+<Meta name="HookForm" of={Stories} />
+
+# \<NumberInput.HookForm />
+
+NumberInput.HookForm is a `react-hook-form` support version of NumberInput. \
+
+<Canvas of={Stories.HookForm} />
+
+### Usage
+
+```tsx
+import { useForm, FormProvider } from "react-hook-form"
+import { NumberInput } from "@reactleaf/input"
+
+function FormComponent() {
+  const form = useForm()
+
+  return (
+    <FormProvider {...form}>
+      <NumberInput.HookForm name="amount" label="Amount" placeholder="Placeholder" />
+    </FormProvider>
+  )
+}
+```
+
+### Extended Props
+
+> **WARNING** \
+> `<NumberInput />` actually use `<input type="text" />` internally, to support number formatting. \
+> Reading `event.currentTarget.value` from event listeners would be a text value, not a number. \
+> If you want to get numeric value, use `onValueChange` instead.
+
+<ArgTypes of={Stories.HookForm} />

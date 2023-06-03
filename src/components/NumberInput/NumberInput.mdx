@@ -1,58 +1,33 @@
-import { Canvas, Meta, Controls } from "@storybook/blocks"
-import * as NumberInputStories from "./NumberInput.stories"
+import { Canvas, Meta, ArgTypes } from "@storybook/blocks"
+import * as Stories from "./NumberInput.stories"
 
-<Meta of={NumberInputStories} />
+<Meta name="Overview" of={Stories} />
 
 # \<NumberInput />
 
 NumberInput is a special input to handle number input.
 
-<Canvas of={NumberInputStories.Default} />
-<Canvas of={NumberInputStories.Formatter} />
+<Canvas of={Stories.Basic} />
+<Canvas of={Stories.Formatter} />
+<Canvas of={Stories.Disabled} />
 
-### Use in `react-hook-form`
-
-`onChange` in `<NumberInput />` will return formatted `string` value, \
-so using `register()` is not recommended in this component.
+### Usage
 
 ```tsx
 import { NumberInput } from "@reactleaf/input"
 
 function FormComponent() {
-  const { control } = useFormContext()
+  const [value, setValue] = useState(0)
 
-  return (
-    <Controller
-      name="withFormatter"
-      control={control}
-      render={({ field, fieldState }) => (
-        <NumberInput
-          label="WithFormatter"
-          min={-999_999_999}
-          max={999_999_999}
-          formatter={customFormat.formatter}
-          parser={customFormat.parser}
-          onValueChange={field.onChange} // <- This is important
-          onFocus={field.onFocus}
-          onBlur={field.onBlur}
-          errorMessage={fieldState.error.message}
-        />
-      )}
-    />
-  )
+  return <NumberInput label="Number" value={value} onValueChange={(v) => setValue(v)} />
 }
 ```
 
-## Props
-
-`<NumberInput />` extends almost all props of `<input />` like `<TextInput />`, but excepts, `type`.
+### Extended Props
 
 > **WARNING** \
-> `@reactleaf/input` extends basic `<input />`, so `onChange` recieves `event` as a parameter. \
+> `<NumberInput />` actually use `<input type="text" />` internally, to support number formatting. \
 > Reading `event.currentTarget.value` from event listeners would be a text value, not a number. \
 > If you want to get numeric value, use `onValueChange` instead.
 
-<Controls
-  of={NumberInputStories.Default}
-  include={["label", "clearable", "errorMessage", "step", "onValueChange", "onEnter", "formatter", "parser"]}
-/>
+<ArgTypes of={Stories.Playground} />
