@@ -9,6 +9,14 @@ export const InputArea = styled(CS.InputArea)`
   }
 `
 
+export const Preview = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`
+
 export const FileName = styled.span`
   position: absolute;
   top: 50%;

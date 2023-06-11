@@ -1,22 +1,24 @@
 import { Canvas, Meta, Controls } from "@storybook/blocks"
-import * as FileInputStories from "./FileInput.stories"
+import * as Stories from "./FileInput.stories"
 
-<Meta of={FileInputStories} />
+<Meta name="Overview" of={Stories} />
 
 # \<FileInput />
 
-FileInput is a special input to handle File input.
+FileInput is a special input to handle single file.
 
-<Canvas of={FileInputStories.Default} />
+<Canvas of={Stories.Basic} />
+<Canvas of={Stories.Disabled} />
 
 ## Value Type of \<FileInput />
 
 While we are using forms, create and update forms are quite similar. They are almost same.
-To handle those forms, we sometimes need to handle two different forms or inputs.
+But handling files, there are some differences rather than handling text or number.
+When we use file in input, the file will be uploaded.
+And If we want to check the details, the field will be filled with the url of the file.
 
+So to handle those forms, we need to handle two different forms or inputs : file and url.
 `<FileInput />` solves the problem by using `FileSource` type.
-
-Now when we handle some file form, you just don't need to know the file is selected just right before the browser or uploaded long time ago.
 
 ```ts
 type FileSource = UploadedFile | SelectedFile
@@ -37,33 +39,18 @@ interface SelectedFile {
 so using `register()` is not recommended in this component.
 
 ```tsx
-import { FileInput } from "@reactleaf/input"
+import { FileInput, FileSource } from "@reactleaf/input"
 
 function FormComponent() {
-  const { control } = useFormContext()
+  const [value, setValue] = useState<FileSource>({ type: "file", file: null })
 
-  return (
-    <Controller
-      name="file"
-      control={control}
-      render={({ field, fieldState }) => (
-        <FileInput label="Just some files" {...field} errorMessage={fieldState.error.message} />
-      )}
-    />
-  )
+  return <FileInput label="image" value={value} onValueChange={(v) => setValue(v)} />
 }
 ```
 
 ## Props
 
-`<FileInput />` extends almost all props of `<input />` like `<TextInput />`, but excepts, `type`.
-
-> **WARNING** \
-> `@reactleaf/input` extends basic `<input />`, so `onChange` recieves `event` as a parameter. \
-> Reading `event.currentTarget.value` from event listeners would be a text value, not a File. \
-> If you want to get numeric value, use `onValueChange` instead.
-
 <Controls
-  of={FileInputStories.Default}
-  include={["label", "clearable", "errorMessage", "step", "onValueChange", "onEnter", "formatter", "parser"]}
+  of={Stories.Playground}
+  include={["label", "errorMessage", "maxFileSize", "onValueChange", "renderPreview"]}
 />

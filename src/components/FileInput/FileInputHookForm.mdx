@@ -1,0 +1,31 @@
+import { Canvas, Meta, ArgTypes } from "@storybook/blocks"
+import * as Stories from "./FileInputHookForm.stories"
+
+<Meta name="HookForm" of={Stories} />
+
+# \<FileInput.HookForm />
+
+FileInput.HookForm is a `react-hook-form` support version of FileInput. \
+
+<Canvas of={Stories.HookForm} />
+
+### Usage
+
+```tsx
+import { useForm, FormProvider } from "react-hook-form"
+import { FileInput } from "@reactleaf/input"
+
+function FormComponent() {
+  const form = useForm()
+
+  return (
+    <FormProvider {...form}>
+      <FileInput.HookForm name="image" label="Image" maxFileSize={10 * 1000 * 1000} />
+    </FormProvider>
+  )
+}
+```
+
+### Extended Props
+
+<ArgTypes of={Stories.HookForm} />
