@@ -3,7 +3,7 @@ import styled, { css } from "styled-components"
 import * as CS from "../common.style"
 
 export const InputArea = styled(CS.InputArea)`
-  height: 4rem;
+  height: 4.5rem;
   &:hover {
     ${() => css``}
   }
@@ -38,6 +38,24 @@ export const FileSize = styled.span<{ error?: boolean }>`
     css`
       color: ${status("red")};
     `}
+`
+
+export const UrlInput = styled.div`
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(0.25rem);
+  button {
+    height: 2rem;
+  }
 `
 
 export const Overlay = styled.div`

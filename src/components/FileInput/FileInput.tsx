@@ -8,6 +8,7 @@ import * as S from "./FileInput.style"
 import { FileSource } from "./types"
 
 import { formatFileSize, getFileName, getFileSize } from "./utils"
+import TextInput from "../TextInput"
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "value"> {
   label?: string
@@ -25,6 +26,8 @@ export default React.forwardRef(function FileInput(
   const ref = useInnerRef(outerRef)
   const [filled, setFilled] = useState(isFilled(value))
   const [sizeError, setSizeError] = useState(false)
+  const [showUrlInput, setShowUrlInput] = useState(false)
+  const [url, seturl] = useState("")
 
   function isFilled(value?: FileSource) {
     if (value?.type === "file") return value.file !== null
@@ -62,6 +65,16 @@ export default React.forwardRef(function FileInput(
     }
   }
 
+  function openUrlInput() {
+    setShowUrlInput(true)
+  }
+
+  function setUrlValue() {
+    setShowUrlInput(false)
+    onValueChange?.({ type: "url", url })
+    setFilled(isFilled({ type: "url", url }))
+  }
+
   function download() {
     const url = value?.type === "url" && value.url
     if (!url) return
@@ -76,8 +89,6 @@ export default React.forwardRef(function FileInput(
 
   const isEditable = !inputProps.disabled && !inputProps.readOnly
   const isError = Boolean(errorMessage)
-
-  const selectedFile = ref.current?.files?.[0]
   const isUploaded = value?.type === "url" && value.url !== ""
 
   return (
@@ -96,11 +107,23 @@ export default React.forwardRef(function FileInput(
         {filled && <FileSize source={value} />}
         <S.Overlay>
           {!filled && isEditable && <S.OverlayButton onClick={() => ref.current?.click()}>Select File</S.OverlayButton>}
-          {!filled && isEditable && <S.OverlayButton>Paste Link</S.OverlayButton>}
+          {!filled && isEditable && <S.OverlayButton onClick={openUrlInput}>Paste Link</S.OverlayButton>}
           {filled && isEditable && <S.OverlayButton onClick={handleReselect}>Reselect</S.OverlayButton>}
           {filled && isUploaded && <S.OverlayButton onClick={download}>Download</S.OverlayButton>}
           {filled && isUploaded && <S.OverlayButton onClick={copyURL}>Copy URL</S.OverlayButton>}
         </S.Overlay>
+        {showUrlInput && (
+          <S.UrlInput>
+            <TextInput
+              label="url"
+              placeholder="paste file URL"
+              value={url}
+              onValueChange={seturl}
+              onEnter={setUrlValue}
+            />
+            <button onClick={setUrlValue}>Confirm</button>
+          </S.UrlInput>
+        )}
       </S.InputArea>
       <CS.ExtraArea>{errorMessage && <CS.Error>{errorMessage}</CS.Error>}</CS.ExtraArea>
     </CS.InputContainer>
