@@ -45,10 +45,16 @@ export default React.forwardRef(function NumberInput(
     return value !== "" && value !== undefined
   }
 
-  // do not format while inputting -0.00x
   function isWatiable(value: string) {
-    const regex = /^-?0?\.?0*$/
-    return regex.test(value)
+    // do not format while inputting -
+    const inputtingMinus = /^-?\d*$/
+    if (inputtingMinus.test(value)) return true
+
+    // do not format while inputting n.00x
+    const inputtingDecimals = /^-?\d+?\.0*$/
+    if (inputtingDecimals.test(value)) return true
+
+    return false
   }
 
   function setInRange(value: number) {
@@ -169,5 +175,15 @@ function parseNumber(value?: string) {
 function formatNumber(value?: number) {
   if (value === undefined) return ""
   if (isNaN(value)) return ""
+  const isScientific = value.toString().includes("e")
+  if (isScientific) {
+    const [decimal, exponential] = value.toString().split("e")
+    const decimalLength = decimal.split(".")[1]?.length || 0
+    const exponentialValue = Number(exponential)
+    if (exponentialValue < 0) {
+      return value.toFixed(-exponentialValue + decimalLength)
+    }
+    return value.toLocaleString("fullwide", { useGrouping: false })
+  }
   return value.toString()
 }

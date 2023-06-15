@@ -44,7 +44,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build": "tsc",
-    "chromatic": "chromatic --project-token=baa9a92dee01",
+    "chromatic": "chromatic --project-token=baa9a92dee01 --auto-accept-changes",
     "prepare": "install-peers"
   },
   "bugs": {

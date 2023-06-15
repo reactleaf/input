@@ -7,6 +7,12 @@ import * as Stories from "./NumberInput.stories"
 
 NumberInput is a special input to handle number input.
 
+> **WARNING** \
+> `<NumberInput />` is based on `parseFloat()` \
+> Numbers that JavaScript cannot handle are not supported. \
+> ex. 123,456,789,012,345,678 -> 123,456,789,012,345,700 \
+> ex. 0.1234567890123456789 -> 0.1234567891234568 \
+
 <Canvas of={Stories.Basic} />
 <Canvas of={Stories.Formatter} />
 <Canvas of={Stories.Disabled} />
