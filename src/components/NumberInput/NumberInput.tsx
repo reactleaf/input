@@ -6,7 +6,7 @@ import useInnerRef from "@/hooks/useInnerRef"
 import X from "@/icons/X"
 
 import * as CS from "../common.style"
-import { Canvas } from "@storybook/blocks"
+import { formatNumber } from "./formatter"
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
   label?: string
@@ -47,7 +47,7 @@ export default React.forwardRef(function NumberInput(
 
   function isWatiable(value: string) {
     // do not format while inputting -
-    const inputtingMinus = /^-?\d*$/
+    const inputtingMinus = /^-\d*$/
     if (inputtingMinus.test(value)) return true
 
     // do not format while inputting n.00x
@@ -170,20 +170,4 @@ function parseNumber(value?: string) {
   const cleaned = value.replace(cleanPattern, "")
 
   return parseFloat(cleaned)
-}
-
-function formatNumber(value?: number) {
-  if (value === undefined) return ""
-  if (isNaN(value)) return ""
-  const isScientific = value.toString().includes("e")
-  if (isScientific) {
-    const [decimal, exponential] = value.toString().split("e")
-    const decimalLength = decimal.split(".")[1]?.length || 0
-    const exponentialValue = Number(exponential)
-    if (exponentialValue < 0) {
-      return value.toFixed(-exponentialValue + decimalLength)
-    }
-    return value.toLocaleString("fullwide", { useGrouping: false })
-  }
-  return value.toString()
 }

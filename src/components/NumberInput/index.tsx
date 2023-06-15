@@ -37,3 +37,5 @@ NumberInput.HookForm = (props: HookFormProps) => {
 }
 
 export default NumberInput
+export type { Props }
+export { formatNumber, formatNumberWithCommas } from "./formatter"

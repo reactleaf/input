@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import NumberInput from "@/components/NumberInput"
+import NumberInput, { formatNumberWithCommas } from "@/components/NumberInput"
 
 const meta: Meta<typeof NumberInput> = {
   title: "Components/NumberInput",
@@ -27,7 +27,7 @@ export const Formatter: Story = {
     min: -999_999_999,
     max: 999_999_999,
     step: 100,
-    formatter: (value) => (value ? `$ ${value.toLocaleString()}` : "$ "),
+    formatter: (value) => (value ? `$ ${formatNumberWithCommas(value)}` : "$ "),
   },
 }
 
@@ -47,7 +47,7 @@ export const Playground: Story = {
     min: -999_999_999,
     max: 999_999_999,
     step: 100,
-    formatter: (value) => (value ? `$ ${value.toLocaleString()}` : "$ "),
+    formatter: (value) => (value ? `$ ${formatNumberWithCommas(value)}` : "$ "),
   },
   argTypes: {
     label: {
