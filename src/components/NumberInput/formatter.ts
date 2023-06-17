@@ -27,3 +27,11 @@ export function formatNumberWithCommas(value?: number) {
   }
   return `${numericWithComamas}.${fractional}`
 }
+
+export function parseNumber(value?: string) {
+  if (!value) return NaN
+  const cleanPattern = new RegExp(`[^-+0-9.]`, "g")
+  const cleaned = value.replace(cleanPattern, "")
+
+  return parseFloat(cleaned)
+}

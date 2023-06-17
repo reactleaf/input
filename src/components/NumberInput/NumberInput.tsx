@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useLayoutEffect, useRef, useState } from "react"
 import cx from "classnames"
 
 import useInnerRef from "@/hooks/useInnerRef"
@@ -6,7 +6,7 @@ import useInnerRef from "@/hooks/useInnerRef"
 import X from "@/icons/X"
 
 import * as CS from "../common.style"
-import { formatNumber } from "./formatter"
+import { formatNumber, formatNumberWithCommas, parseNumber } from "./formatter"
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
   label?: string
@@ -15,10 +15,10 @@ export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>,
   step?: number
   min?: number
   max?: number
+  commas?: boolean
+  suffix?: string
   onValueChange?: (value: number) => void
   onEnter?: (value: number) => void
-  formatter?: (value: number) => string
-  parser?: (value: string) => number
 }
 
 export default React.forwardRef(function NumberInput(
@@ -29,17 +29,28 @@ export default React.forwardRef(function NumberInput(
     step = 1,
     min = 0,
     max,
+    commas,
+    suffix,
     onValueChange,
     onEnter,
-    formatter = formatNumber,
-    parser = parseNumber,
     ...inputProps
   }: Props,
   outerRef: React.Ref<HTMLInputElement>
 ) {
   const ref = useInnerRef(outerRef)
+  const suffixRef = useRef<HTMLSpanElement>(null)
   const [filled, setFilled] = useState(isFilled(inputProps.value))
   const [focused, setFocused] = useState(false)
+
+  const formatter = commas ? formatNumberWithCommas : formatNumber
+
+  // suffix의 길이에 맞춰 padding-right 추가
+  useLayoutEffect(() => {
+    if (!suffixRef.current) return
+    if (ref.current) {
+      ref.current.style.paddingRight = `calc(10px + ${suffixRef.current.offsetWidth}px)`
+    }
+  }, [suffix])
 
   function isFilled(value: unknown) {
     return value !== "" && value !== undefined
@@ -73,7 +84,7 @@ export default React.forwardRef(function NumberInput(
       ref.current.value = formattedValue
     }
     inputProps.onChange?.(e)
-    onValueChange?.(parser(formattedValue))
+    onValueChange?.(parseNumber(formattedValue))
     setFilled(isFilled(e.target.value))
   }
 
@@ -94,7 +105,7 @@ export default React.forwardRef(function NumberInput(
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     inputProps.onKeyDown?.(e)
-    const value = parser(e.currentTarget.value)
+    const value = parseNumber(e.currentTarget.value)
 
     if (e.key === "Enter") {
       onEnter?.(value)
@@ -152,7 +163,9 @@ export default React.forwardRef(function NumberInput(
           onFocus={handleFocus}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
+          style={{ textAlign: "right", ...inputProps.style }}
         />
+        {suffix && <CS.Suffix ref={suffixRef}>{suffix}</CS.Suffix>}
         {isClearable && (
           <CS.ClearButton onClick={handleClear} tabIndex={-1}>
             <X size={16} />
@@ -163,11 +176,3 @@ export default React.forwardRef(function NumberInput(
     </CS.InputContainer>
   )
 })
-
-function parseNumber(value?: string) {
-  if (!value) return NaN
-  const cleanPattern = new RegExp(`[^-+0-9.]`, "g")
-  const cleaned = value.replace(cleanPattern, "")
-
-  return parseFloat(cleaned)
-}

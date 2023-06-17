@@ -18,8 +18,18 @@ export const HookForm: Story = {
     label: "Amount",
     placeholder: "Placeholder",
     clearable: true,
+    commas: true,
+    suffix: "$",
   },
   argTypes: {
+    name: {
+      type: { required: true, name: "string" },
+      description: "field name for hook-form",
+      table: { type: { summary: "string" } },
+    },
+    placeholder: {
+      table: { type: { summary: "string" } },
+    },
     label: {
       table: { type: { summary: "string" }, category: "Extended Props" },
     },
@@ -32,21 +42,19 @@ export const HookForm: Story = {
       description:
         "Increase or decrease value by step, when up or down arrow key is pressed. If shift key is pressed, step is multiplied by 10",
       defaultValue: { summary: 1 },
-      table: { type: { summary: "number" }, category: "Extended Props" },
+      table: { type: { summary: "number" } },
+    },
+    suffix: {
+      table: { type: { summary: "string" }, category: "Extended Props" },
+    },
+    commas: {
+      description: "Add commas on thousands separator",
+      defaultValue: { summary: false },
+      table: { type: { summary: "boolean" }, category: "Extended Props" },
     },
     errorMessage: {
       description: "Error message that makes input red if exists",
       table: { type: { summary: "string" }, category: "Extended Props" },
-    },
-    formatter: {
-      description: "As default, add commas to number",
-      defaultValue: { summary: "formatNumber" },
-      table: { type: { summary: "(value: number) => string" }, category: "Extended Props" },
-    },
-    parser: {
-      description: "As default, parse only numeric characters",
-      defaultValue: { summary: "parseNumber" },
-      table: { type: { summary: "(value: string) => number" }, category: "Extended Props" },
     },
     onValueChange: {
       description: "Called when value is changed. ",

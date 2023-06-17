@@ -19,15 +19,16 @@ export const Basic: Story = {
   },
 }
 
-export const Formatter: Story = {
+export const Commas: Story = {
   args: {
-    label: "Using comma-separate formatter",
-    placeholder: "$ xxx,xxx,xxx",
+    label: "Using commas and suffix",
+    placeholder: "xxx,xxx,xxx",
     clearable: true,
     min: -999_999_999,
     max: 999_999_999,
     step: 100,
-    formatter: (value) => (value ? `$ ${formatNumberWithCommas(value)}` : "$ "),
+    suffix: "$",
+    commas: true,
   },
 }
 
@@ -47,9 +48,13 @@ export const Playground: Story = {
     min: -999_999_999,
     max: 999_999_999,
     step: 100,
-    formatter: (value) => (value ? `$ ${formatNumberWithCommas(value)}` : "$ "),
+    suffix: "$",
+    commas: true,
   },
   argTypes: {
+    placeholder: {
+      table: { type: { summary: "string" } },
+    },
     label: {
       table: { type: { summary: "string" }, category: "Extended Props" },
     },
@@ -62,21 +67,19 @@ export const Playground: Story = {
       description:
         "Increase or decrease value by step, when up or down arrow key is pressed. If shift key is pressed, step is multiplied by 10",
       defaultValue: { summary: 1 },
-      table: { type: { summary: "number" }, category: "Extended Props" },
+      table: { type: { summary: "number" } },
     },
     errorMessage: {
       description: "Error message that makes input red if exists",
       table: { type: { summary: "string" }, category: "Extended Props" },
     },
-    formatter: {
-      description: "As default, add commas to number",
-      defaultValue: { summary: "formatNumber" },
-      table: { type: { summary: "(value: number) => string" }, category: "Extended Props" },
+    suffix: {
+      table: { type: { summary: "string" }, category: "Extended Props" },
     },
-    parser: {
-      description: "As default, parse only numeric characters",
-      defaultValue: { summary: "parseNumber" },
-      table: { type: { summary: "(value: string) => number" }, category: "Extended Props" },
+    commas: {
+      description: "Add commas on thousands separator",
+      defaultValue: { summary: false },
+      table: { type: { summary: "boolean" }, category: "Extended Props" },
     },
     onValueChange: {
       description: "Called when value is changed. ",

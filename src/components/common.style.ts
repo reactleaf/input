@@ -87,12 +87,12 @@ export const InputArea = styled.div`
   transition: border-color 0.2s;
   overflow: hidden;
 
-  /* ${() =>
+  ${() =>
     css`
       :hover ${ClearButton} {
         display: block;
       }
-    `} */
+    `}
 `
 
 export const Input = styled.input`
@@ -103,11 +103,22 @@ export const Input = styled.input`
   ${({ theme }) => theme.typo.body};
 `
 
+export const Suffix = styled.span`
+  position: absolute;
+  bottom: 50%;
+  right: 0.5rem;
+  padding-left: 0.25em;
+  transform: translateY(50%);
+  ${({ theme }) => theme.typo.label};
+  color: ${primary(10, 0.5)};
+`
+
 export const ClearButton = styled.button.attrs({ type: "button" })`
   position: absolute;
   top: 50%;
   right: 0;
   transform: translate(-0.25rem, -50%);
+  display: none;
   width: 1rem;
   height: 1rem;
   padding: 0;
