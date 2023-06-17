@@ -47,11 +47,11 @@ export default React.forwardRef(function NumberInput(
 
   function isWatiable(value: string) {
     // do not format while inputting -
-    const inputtingMinus = /^-\d*$/
+    const inputtingMinus = /^-0?$/
     if (inputtingMinus.test(value)) return true
 
     // do not format while inputting n.00x
-    const inputtingDecimals = /^-?\d+?\.0*$/
+    const inputtingDecimals = /\.0*$/
     if (inputtingDecimals.test(value)) return true
 
     return false

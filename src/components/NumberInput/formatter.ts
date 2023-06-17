@@ -20,5 +20,10 @@ export function formatNumber(value?: number) {
 export function formatNumberWithCommas(value?: number) {
   if (value === undefined) return ""
   if (isNaN(value)) return ""
-  return formatNumber(value).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  const [numeric, fractional] = formatNumber(value).split(".")
+  const numericWithComamas = numeric.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  if (!fractional) {
+    return numericWithComamas
+  }
+  return `${numericWithComamas}.${fractional}`
 }
