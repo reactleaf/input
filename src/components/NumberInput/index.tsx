@@ -35,7 +35,8 @@ NumberInput.HookForm = (props: HookFormProps) => {
     />
   )
 }
+;(NumberInput.HookForm as React.FunctionComponent).displayName = "NumberInput.HookForm"
 
 export default NumberInput
-export type { Props }
+export type { Props, HookFormProps }
 export { formatNumber, formatNumberWithCommas } from "./formatter"

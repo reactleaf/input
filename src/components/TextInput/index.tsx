@@ -35,5 +35,7 @@ TextInput.HookForm = (props: HookFormProps) => {
     />
   )
 }
+;(TextInput.HookForm as React.FunctionComponent).displayName = "TextInput.HookForm"
 
 export default TextInput
+export type { Props, HookFormProps }

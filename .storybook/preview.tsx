@@ -3,6 +3,7 @@ import { defaultTheme } from "@reactleaf/theme"
 import type { Preview } from "@storybook/react"
 import { ThemeProvider } from "styled-components"
 import { FormProvider, useForm } from "react-hook-form"
+import { sourceTransform } from "@/utils/storybook"
 
 const preview: Preview = {
   parameters: {
@@ -14,6 +15,7 @@ const preview: Preview = {
       },
       expanded: true,
     },
+    docs: { source: { language: "tsx", transform: sourceTransform } },
     options: {
       storySort: {
         order: ["Getting Started", "Components", ["TextInput", "NumberInput", "FileInput"]],

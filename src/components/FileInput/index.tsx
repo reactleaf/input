@@ -35,5 +35,7 @@ FileInput.HookForm = (props: HookFormProps) => {
     />
   )
 }
+;(FileInput.HookForm as React.FunctionComponent).displayName = "FileInput.HookForm"
 
 export default FileInput
+export type { Props, HookFormProps }
