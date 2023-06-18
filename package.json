@@ -2,7 +2,7 @@
   "name": "input",
   "version": "0.0.1",
   "description": "Variable React Input components",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
@@ -45,7 +45,8 @@
     "build-storybook": "storybook build",
     "build": "tsc",
     "chromatic": "chromatic --project-token=baa9a92dee01 --auto-accept-changes",
-    "prepare": "install-peers"
+    "prepare": "install-peers",
+    "prepublishOnly": "npm run build"
   },
   "bugs": {
     "url": "https://github.com/reactleaf/input/issues"
