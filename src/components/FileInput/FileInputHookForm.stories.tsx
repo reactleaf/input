@@ -11,7 +11,7 @@ const meta: Meta<typeof FileInput> = {
 
 export default meta
 
-type Story = StoryObj<typeof FileInput>
+type Story = StoryObj<typeof FileInput.HookForm>
 
 export const HookForm: Story = {
   args: {
@@ -20,6 +20,11 @@ export const HookForm: Story = {
     maxFileSize: 10 * 1000 * 1000,
   },
   argTypes: {
+    name: {
+      type: { required: true, name: "string" },
+      description: "field name for hook-form",
+      table: { type: { summary: "string" } },
+    },
     label: {
       description: "label for input",
       table: { type: { summary: "string" } },
@@ -42,10 +47,6 @@ export const HookForm: Story = {
     maxFileSize: {
       description: "Maximum file size in bytes, 0 or undefined means unlimited",
       table: { type: { summary: "number" } },
-    },
-    errorMessage: {
-      description: "Error message that makes input red if exists",
-      table: { type: { summary: "string" } },
     },
   },
   render: (args) => {

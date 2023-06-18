@@ -9,7 +9,7 @@ const meta: Meta<typeof NumberInput> = {
 
 export default meta
 
-type Story = StoryObj<typeof NumberInput>
+type Story = StoryObj<typeof NumberInput.HookForm>
 
 export const HookForm: Story = {
   name: "Example with HookForm",
@@ -51,10 +51,6 @@ export const HookForm: Story = {
       description: "Add commas on thousands separator",
       defaultValue: { summary: false },
       table: { type: { summary: "boolean" }, category: "Extended Props" },
-    },
-    errorMessage: {
-      description: "Error message that makes input red if exists",
-      table: { type: { summary: "string" }, category: "Extended Props" },
     },
     onValueChange: {
       description: "Called when value is changed. ",
