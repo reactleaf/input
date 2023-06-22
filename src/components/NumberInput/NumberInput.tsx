@@ -23,6 +23,7 @@ export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>,
 
 export default React.forwardRef(function NumberInput(
   {
+    value,
     label,
     clearable = true,
     errorMessage,
@@ -39,7 +40,7 @@ export default React.forwardRef(function NumberInput(
 ) {
   const ref = useInnerRef(outerRef)
   const suffixRef = useRef<HTMLSpanElement>(null)
-  const [filled, setFilled] = useState(isFilled(inputProps.value))
+  const [filled, setFilled] = useState(isFilled(value))
   const [focused, setFocused] = useState(false)
 
   const formatter = commas ? formatNumberWithCommas : formatNumber
@@ -52,6 +53,13 @@ export default React.forwardRef(function NumberInput(
     }
   }, [suffix])
 
+  useLayoutEffect(() => {
+    if (typeof value !== "number") return
+    if (ref.current) {
+      ref.current.value = formatter(value)
+    }
+  }, [value])
+
   function isFilled(value: unknown) {
     return value !== "" && value !== undefined
   }
@@ -62,7 +70,7 @@ export default React.forwardRef(function NumberInput(
     if (inputtingMinus.test(value)) return true
 
     // do not format while inputting n.00x
-    const inputtingDecimals = /\.0*$/
+    const inputtingDecimals = /[^.]\.{1}0*$/
     if (inputtingDecimals.test(value)) return true
 
     return false
