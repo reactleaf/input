@@ -1,3 +1,3 @@
-export { default as TextInput } from "./src/components/TextInput"
-export { default as NumberInput } from "./src/components/NumberInput"
-export { default as FileInput } from "./src/components/FileInput"
+export { default as TextInput } from "@/components/TextInput"
+export { default as NumberInput } from "@/components/NumberInput"
+export { default as FileInput } from "@/components/FileInput"

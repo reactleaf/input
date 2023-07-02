@@ -1,6 +1,6 @@
 {
-  "name": "input",
-  "version": "0.0.1",
+  "name": "@reactleaf/input",
+  "version": "0.1.0",
   "description": "Variable React Input components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,6 +30,7 @@
     "@storybook/react-webpack5": "^7.0.4",
     "@storybook/testing-library": "^0.0.14-next.2",
     "@types/color": "^3.0.3",
+    "@types/react": "^18.2.14",
     "@types/styled-components": "^5.1.26",
     "chromatic": "^6.17.3",
     "eslint": "^8.38.0",
@@ -43,7 +44,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "tsc",
+    "build": "tsc & cp tsconfig.json ./dist/tsconfig.json",
     "chromatic": "chromatic --project-token=baa9a92dee01 --auto-accept-changes",
     "prepare": "install-peers",
     "prepublishOnly": "npm run build"
