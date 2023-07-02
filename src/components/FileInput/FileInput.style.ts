@@ -1,12 +1,9 @@
-import { primary, status } from "@reactleaf/theme"
+import { grey, primary, status } from "@reactleaf/theme"
 import styled, { css } from "styled-components"
 import * as CS from "../common.style"
 
 export const InputArea = styled(CS.InputArea)`
   height: 4.5rem;
-  &:hover {
-    ${() => css``}
-  }
 `
 
 export const Preview = styled.div`
@@ -22,7 +19,7 @@ export const FileName = styled.span`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: ${primary(10)};
+  color: ${grey(10)};
 `
 
 export const FileSize = styled.span<{ error?: boolean }>`
@@ -32,7 +29,7 @@ export const FileSize = styled.span<{ error?: boolean }>`
   right: 0;
   padding-right: 0.25rem;
   ${({ theme }) => theme.typo.label};
-  color: ${primary(70)};
+  color: ${grey(70)};
   ${({ error }) =>
     error &&
     css`

@@ -1,4 +1,4 @@
-import { primary, status } from "@reactleaf/theme"
+import { grey, primary, status } from "@reactleaf/theme"
 import styled, { css } from "styled-components"
 
 export const reset = css`
@@ -6,7 +6,7 @@ export const reset = css`
     border: none;
     outline: none;
     ::placeholder {
-      color: ${primary(80)};
+      color: ${grey(70)};
       font-weight: 200;
     }
   }
@@ -25,10 +25,10 @@ export const InputContainer = styled.div`
   &.filled {
     ${() => css`
       ${LabelArea} {
-        color: ${primary(10)};
+        color: ${grey(10)};
       }
       ${InputArea} {
-        border-color: ${primary(10)};
+        border-color: ${grey(10)};
       }
     `}
   }
@@ -36,7 +36,7 @@ export const InputContainer = styled.div`
   &.focused {
     ${() => css`
       ${LabelArea} {
-        color: ${primary(10)};
+        color: ${grey(10)};
       }
       ${InputArea} {
         border-color: ${primary(50)};
@@ -58,7 +58,7 @@ export const InputContainer = styled.div`
   &.disabled {
     ${() => css`
       ${InputArea} {
-        background-color: ${primary(90)};
+        background-color: ${grey(90)};
       }
     `}
   }
@@ -68,7 +68,7 @@ export const LabelArea = styled.div`
   position: relative;
   height: 1.25rem;
   text-align: left;
-  color: ${primary(10, 0.5)};
+  color: ${grey(10, 0.5)};
 
   label {
     padding-left: 0.25rem;
@@ -81,7 +81,7 @@ export const InputArea = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  border: 1px solid ${primary(70)};
+  border: 1px solid ${grey(70)};
   border-radius: 4px;
   background: white;
   transition: border-color 0.2s;
@@ -128,7 +128,7 @@ export const ClearButton = styled.button.attrs({ type: "button" })`
   line-height: 0;
   cursor: pointer;
   svg {
-    stroke: ${primary(10)};
+    stroke: ${grey(10)};
   }
 
   :hover svg {
@@ -142,5 +142,6 @@ export const ExtraArea = styled.div`
 
 export const Error = styled.p`
   padding-left: 0.25rem;
-  ${({ theme }) => theme.typo.error}
+  ${({ theme }) => theme.typo.description};
+  color: ${status("red")};
 `
