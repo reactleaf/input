@@ -46,7 +46,7 @@
   padding: 0 2rem;
   box-sizing: border-box;
   backdrop-filter: blur(0.25rem);
-  button {
+  & button {
     height: 2rem;
   }
 }
@@ -68,7 +68,7 @@
     opacity: 1;
     backdrop-filter: blur(0.25rem);
   }
-  button {
+  & button {
     background: white;
     padding: 0.25rem 0.75rem;
     cursor: pointer;
