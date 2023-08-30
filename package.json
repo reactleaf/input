@@ -16,7 +16,8 @@
   "dependencies": {
     "@reactleaf/theme": "1.1.0",
     "classnames": "^2.3.2",
-    "styled-components": "^5.3.9"
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.21.4",
@@ -33,6 +34,7 @@
     "@types/react": "^18.2.14",
     "@types/styled-components": "^5.1.26",
     "chromatic": "^6.17.3",
+    "esbuild": "^0.19.2",
     "eslint": "^8.38.0",
     "install-peers-cli": "^2.2.0",
     "prettier": "^2.8.7",
@@ -44,7 +46,9 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "tsc & cp tsconfig.json ./dist/tsconfig.json",
+    "build": "yarn run build:common && yarn run build:types",
+    "build:common": "esbuild index.ts --outdir=dist --sourcemap --bundle --minify",
+    "build:types": "tsc --emitDeclarationOnly --declaration --project tsconfig.build.json",
     "chromatic": "chromatic --project-token=baa9a92dee01 --auto-accept-changes",
     "prepare": "install-peers",
     "prepublishOnly": "npm run build"
@@ -56,8 +60,6 @@
   "homepage": "https://github.com/reactleaf/input#readme",
   "_id": "input@0.0.1",
   "peerDependencies": {
-    "react": "^18",
-    "react-dom": "^18",
     "react-hook-form": "^7"
   }
 }

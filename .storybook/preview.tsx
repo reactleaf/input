@@ -4,6 +4,7 @@ import type { Preview } from "@storybook/react"
 import { ThemeProvider } from "styled-components"
 import { FormProvider, useForm } from "react-hook-form"
 import { sourceTransform } from "@/utils/storybook"
+import "@/index.css"
 
 const preview: Preview = {
   parameters: {

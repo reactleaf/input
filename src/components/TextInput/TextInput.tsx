@@ -5,8 +5,6 @@ import useInnerRef from "@/hooks/useInnerRef"
 
 import X from "@/icons/X"
 
-import * as CS from "../common.style"
-
 export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string
   clearable?: boolean
@@ -73,17 +71,17 @@ export default React.forwardRef(function TextInput(
   const isError = Boolean(errorMessage)
 
   return (
-    <CS.InputContainer
-      className={cx("text-input", {
+    <div
+      className={cx("leaf-input-container", "leaf-text-input", {
         filled,
         focused,
         error: isError,
         disabled: inputProps.disabled,
       })}
     >
-      <CS.LabelArea>{label && <label>{label}</label>}</CS.LabelArea>
-      <CS.InputArea>
-        <CS.Input
+      <div className="leaf-label-area">{label && <label>{label}</label>}</div>
+      <div className="leaf-input-area">
+        <input
           {...inputProps}
           ref={ref}
           onChange={handleChange}
@@ -92,12 +90,12 @@ export default React.forwardRef(function TextInput(
           onKeyDown={handleKeyDown}
         />
         {isClearable && (
-          <CS.ClearButton onClick={handleClear} tabIndex={-1}>
+          <button className="leaf-clear-button" onClick={handleClear} tabIndex={-1}>
             <X size={16} />
-          </CS.ClearButton>
+          </button>
         )}
-      </CS.InputArea>
-      <CS.ExtraArea>{errorMessage && <CS.Error>{errorMessage}</CS.Error>}</CS.ExtraArea>
-    </CS.InputContainer>
+      </div>
+      <div className="leaf-extra-area">{errorMessage && <p className="leaf-error-message">{errorMessage}</p>}</div>
+    </div>
   )
 })

@@ -5,8 +5,9 @@ import useInnerRef from "@/hooks/useInnerRef"
 
 import X from "@/icons/X"
 
-import * as CS from "../common.style"
 import { formatNumber, formatNumberWithCommas, parseNumber } from "./formatter"
+
+import "./NumberInput.css"
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
   label?: string
@@ -153,17 +154,17 @@ export default React.forwardRef(function NumberInput(
   const isError = Boolean(errorMessage)
 
   return (
-    <CS.InputContainer
-      className={cx("number-input", {
+    <div
+      className={cx("leaf-input-container", "leaf-number-input", {
         filled,
         focused,
         error: isError,
         disabled: inputProps.disabled,
       })}
     >
-      <CS.LabelArea>{label && <label>{label}</label>}</CS.LabelArea>
-      <CS.InputArea>
-        <CS.Input
+      <div className="leaf-label-area">{label && <label>{label}</label>}</div>
+      <div className="leaf-input-area">
+        <input
           {...inputProps}
           type="text"
           ref={ref}
@@ -173,14 +174,18 @@ export default React.forwardRef(function NumberInput(
           onKeyDown={handleKeyDown}
           style={{ textAlign: "right", ...inputProps.style }}
         />
-        {suffix && <CS.Suffix ref={suffixRef}>{suffix}</CS.Suffix>}
-        {isClearable && (
-          <CS.ClearButton onClick={handleClear} tabIndex={-1}>
-            <X size={16} />
-          </CS.ClearButton>
+        {suffix && (
+          <span className="leaf-suffix" ref={suffixRef}>
+            {suffix}
+          </span>
         )}
-      </CS.InputArea>
-      <CS.ExtraArea>{errorMessage && <CS.Error>{errorMessage}</CS.Error>}</CS.ExtraArea>
-    </CS.InputContainer>
+        {isClearable && (
+          <button className="leaf-clear-button" onClick={handleClear} tabIndex={-1}>
+            <X size={16} />
+          </button>
+        )}
+      </div>
+      <div className="leaf-extra-area">{errorMessage && <p className="leaf-error-message">{errorMessage}</p>}</div>
+    </div>
   )
 })

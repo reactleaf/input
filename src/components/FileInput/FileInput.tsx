@@ -3,8 +3,6 @@ import cx from "classnames"
 
 import useInnerRef from "@/hooks/useInnerRef"
 
-import * as CS from "../common.style"
-import * as S from "./FileInput.style"
 import { FileSource } from "./types"
 
 import { formatFileSize, getFileName, getFileSize } from "./utils"
@@ -92,28 +90,30 @@ export default React.forwardRef(function FileInput(
   const isUploaded = value?.type === "url" && value.url !== ""
 
   return (
-    <CS.InputContainer
-      className={cx("file-input", {
+    <div
+      className={cx("leaf-input-container", "leaf-file-input", {
         filled,
         error: isError,
         disabled: inputProps.disabled,
       })}
     >
-      <CS.LabelArea>{label && <label>{label}</label>}</CS.LabelArea>
-      <S.InputArea>
-        <CS.Input {...inputProps} type="file" ref={ref} onChange={handleChange} style={{ display: "none" }} />
-        {filled && <S.Preview className="preview">{renderPreview(value)}</S.Preview>}
-        {!filled && maxFileSize > 0 && <S.FileSize error={sizeError}>Max {formatFileSize(maxFileSize)}</S.FileSize>}
+      <div className="leaf-label-area">{label && <label>{label}</label>}</div>
+      <div className="leaf-input-area">
+        <input {...inputProps} type="file" ref={ref} onChange={handleChange} style={{ display: "none" }} />
+        {filled && <div className="leaf-file-preview">{renderPreview(value)}</div>}
+        {!filled && maxFileSize > 0 && (
+          <span className={cx("leaf-file-name", { error: sizeError })}>Max {formatFileSize(maxFileSize)}</span>
+        )}
         {filled && <FileSize source={value} />}
-        <S.Overlay>
-          {!filled && isEditable && <S.OverlayButton onClick={() => ref.current?.click()}>Select File</S.OverlayButton>}
-          {!filled && isEditable && <S.OverlayButton onClick={openUrlInput}>Paste Link</S.OverlayButton>}
-          {filled && isEditable && <S.OverlayButton onClick={handleReselect}>Reselect</S.OverlayButton>}
-          {filled && isUploaded && <S.OverlayButton onClick={download}>Download</S.OverlayButton>}
-          {filled && isUploaded && <S.OverlayButton onClick={copyURL}>Copy URL</S.OverlayButton>}
-        </S.Overlay>
+        <div className="leaf-file__overlay">
+          {!filled && isEditable && <button onClick={() => ref.current?.click()}>Select File</button>}
+          {!filled && isEditable && <button onClick={openUrlInput}>Paste Link</button>}
+          {filled && isEditable && <button onClick={handleReselect}>Reselect</button>}
+          {filled && isUploaded && <button onClick={download}>Download</button>}
+          {filled && isUploaded && <button onClick={copyURL}>Copy URL</button>}
+        </div>
         {showUrlInput && (
-          <S.UrlInput>
+          <div className="leaf-file__url-input">
             <TextInput
               label="url"
               placeholder="paste file URL"
@@ -122,16 +122,16 @@ export default React.forwardRef(function FileInput(
               onEnter={setUrlValue}
             />
             <button onClick={setUrlValue}>Confirm</button>
-          </S.UrlInput>
+          </div>
         )}
-      </S.InputArea>
-      <CS.ExtraArea>{errorMessage && <CS.Error>{errorMessage}</CS.Error>}</CS.ExtraArea>
-    </CS.InputContainer>
+      </div>
+      <div className="leaf-extra-area">{errorMessage && <p className="leaf-error-message">{errorMessage}</p>}</div>
+    </div>
   )
 })
 
 function defaultPreview(value?: FileSource) {
-  return <S.FileName>{getFileName(value)}</S.FileName>
+  return <span className="leaf-file-name">{getFileName(value)}</span>
 }
 
 function FileSize({ source }: { source?: FileSource }) {
@@ -140,5 +140,5 @@ function FileSize({ source }: { source?: FileSource }) {
     if (!source) return setSize(0)
     void getFileSize(source).then(setSize)
   }, [source])
-  return <S.FileSize>{formatFileSize(size)}</S.FileSize>
+  return <span className={cx("leaf-file-name")}>Max {formatFileSize(size)}</span>
 }
