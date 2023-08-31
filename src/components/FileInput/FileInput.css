@@ -17,7 +17,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: var(--leaf-grey10);
+  color: var(--leaf-grey-10);
 }
 
 .leaf-file-size {
@@ -27,7 +27,7 @@
   right: 0;
   padding-right: 0.25rem;
   /* ${({ theme }) => theme.typo.label}; */
-  color: var(--leaf-grey70);
+  color: var(--leaf-grey-70);
   &.error {
     color: var(--leaf-status-red);
   }

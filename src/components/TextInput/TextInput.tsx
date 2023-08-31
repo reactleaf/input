@@ -79,10 +79,11 @@ export default React.forwardRef(function TextInput(
         disabled: inputProps.disabled,
       })}
     >
-      <div className="leaf-label-area">{label && <label>{label}</label>}</div>
+      <div className="leaf-label-area">{label && <label className="leaf-label">{label}</label>}</div>
       <div className="leaf-input-area">
         <input
           {...inputProps}
+          className={cx("leaf-body", inputProps.className)}
           ref={ref}
           onChange={handleChange}
           onFocus={handleFocus}
@@ -95,7 +96,9 @@ export default React.forwardRef(function TextInput(
           </button>
         )}
       </div>
-      <div className="leaf-extra-area">{errorMessage && <p className="leaf-error-message">{errorMessage}</p>}</div>
+      <div className="leaf-extra-area">
+        {errorMessage && <p className={cx("leaf-error-message", "leaf-desc")}>{errorMessage}</p>}
+      </div>
     </div>
   )
 })

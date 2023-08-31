@@ -162,10 +162,11 @@ export default React.forwardRef(function NumberInput(
         disabled: inputProps.disabled,
       })}
     >
-      <div className="leaf-label-area">{label && <label>{label}</label>}</div>
+      <div className="leaf-label-area">{label && <label className="leaf-label">{label}</label>}</div>
       <div className="leaf-input-area">
         <input
           {...inputProps}
+          className={cx("leaf-body", inputProps.className)}
           type="text"
           ref={ref}
           onChange={handleChange}
@@ -175,7 +176,7 @@ export default React.forwardRef(function NumberInput(
           style={{ textAlign: "right", ...inputProps.style }}
         />
         {suffix && (
-          <span className="leaf-suffix" ref={suffixRef}>
+          <span className={cx("leaf-suffix", "leaf-label")} ref={suffixRef}>
             {suffix}
           </span>
         )}
@@ -185,7 +186,9 @@ export default React.forwardRef(function NumberInput(
           </button>
         )}
       </div>
-      <div className="leaf-extra-area">{errorMessage && <p className="leaf-error-message">{errorMessage}</p>}</div>
+      <div className="leaf-extra-area">
+        {errorMessage && <p className={cx("leaf-error-message", "leaf-desc")}>{errorMessage}</p>}
+      </div>
     </div>
   )
 })

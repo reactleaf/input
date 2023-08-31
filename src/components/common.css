@@ -5,14 +5,14 @@
   width: 100%;
   min-width: 10rem;
 
-  --placeholder-color: var(--leaf-grey70);
+  --placeholder-color: var(--leaf-grey-70);
 
   &.filled {
     .leaf-label-area {
       opacity: 1;
     }
     .leaf-input-area {
-      border-color: var(--leaf-grey10);
+      border-color: var(--leaf-grey-10);
     }
   }
 
@@ -21,7 +21,7 @@
       opacity: 1;
     }
     .leaf-input-area {
-      border-color: var(--leaf-primary50);
+      border-color: var(--leaf-primary-50);
     }
   }
 
@@ -36,7 +36,7 @@
   }
   &.disabled {
     .leaf-input-area {
-      background-color: var(--leaf-grey90);
+      background-color: var(--leaf-grey-90);
     }
   }
 
@@ -49,13 +49,12 @@
   position: relative;
   height: 1.25rem;
   text-align: left;
-  color: var(--leaf-grey10);
+  color: var(--leaf-grey-10);
   opacity: 0.5;
   transition: color 0.2s;
 
   & label {
     padding-left: 0.25rem;
-    /* ${({ theme }) => theme.typo.label} */
   }
 }
 
@@ -63,7 +62,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  border: 1px solid var(--leaf-grey70);
+  border: 1px solid var(--leaf-grey-70);
   border-radius: 4px;
   background: white;
   transition: border-color 0.2s;
@@ -84,7 +83,6 @@
       color: var(--placeholder-color);
       font-weight: 200;
     }
-    /* ${({ theme }) => theme.typo.body}; */
   }
 }
 
@@ -98,13 +96,13 @@
   height: 1rem;
   padding: 0;
   border: none;
-  background: var(--leaf-primary95);
+  background: var(--leaf-primary-95);
   border-radius: 50%;
   line-height: 0;
   cursor: pointer;
 
   & svg {
-    stroke: var(--leaf-grey10);
+    stroke: var(--leaf-grey-10);
   }
 
   &:hover svg {
@@ -118,6 +116,5 @@
 
 .leaf-error-message {
   padding-left: 0.25rem;
-  /* ${({ theme }) => theme.typo.description}; */
   color: var(--leaf-status-red);
 }

@@ -97,9 +97,16 @@ export default React.forwardRef(function FileInput(
         disabled: inputProps.disabled,
       })}
     >
-      <div className="leaf-label-area">{label && <label>{label}</label>}</div>
+      <div className="leaf-label-area">{label && <label className="leaf-label">{label}</label>}</div>
       <div className="leaf-input-area">
-        <input {...inputProps} type="file" ref={ref} onChange={handleChange} style={{ display: "none" }} />
+        <input
+          {...inputProps}
+          className={cx("leaf-body", inputProps.className)}
+          type="file"
+          ref={ref}
+          onChange={handleChange}
+          style={{ display: "none" }}
+        />
         {filled && <div className="leaf-file-preview">{renderPreview(value)}</div>}
         {!filled && maxFileSize > 0 && (
           <span className={cx("leaf-file-name", { error: sizeError })}>Max {formatFileSize(maxFileSize)}</span>
@@ -125,7 +132,9 @@ export default React.forwardRef(function FileInput(
           </div>
         )}
       </div>
-      <div className="leaf-extra-area">{errorMessage && <p className="leaf-error-message">{errorMessage}</p>}</div>
+      <div className="leaf-extra-area">
+        {errorMessage && <p className={cx("leaf-error-message", "leaf-desc")}>{errorMessage}</p>}
+      </div>
     </div>
   )
 })

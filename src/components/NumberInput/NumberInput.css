@@ -4,7 +4,6 @@
   right: 0.5rem;
   padding-left: 0.25em;
   transform: translateY(50%);
-  /* ${({ theme }) => theme.typo.label}; */
-  color: var(--leaf-primary50);
+  color: var(--leaf-primary-50);
   opacity: 0.5;
 }
