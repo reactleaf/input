@@ -21,7 +21,7 @@ export const HookForm: Story = {
     placeholder: "Placeholder",
     clearable: true,
     commas: true,
-    suffix: "$",
+    prefix: "$",
   },
   argTypes: {
     name: {
@@ -46,7 +46,7 @@ export const HookForm: Story = {
       defaultValue: { summary: 1 },
       table: { type: { summary: "number" } },
     },
-    suffix: {
+    prefix: {
       table: { type: { summary: "string" }, category: "Extended Props" },
     },
     commas: {

@@ -7,6 +7,7 @@ import { FileSource } from "./types"
 
 import { formatFileSize, getFileName, getFileSize } from "./utils"
 import TextInput from "../TextInput"
+import "./FileInput.css"
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "value"> {
   label?: string
@@ -109,15 +110,35 @@ export default React.forwardRef(function FileInput(
         />
         {filled && <div className="leaf-file-preview">{renderPreview(value)}</div>}
         {!filled && maxFileSize > 0 && (
-          <span className={cx("leaf-file-name", { error: sizeError })}>Max {formatFileSize(maxFileSize)}</span>
+          <span className={cx("leaf-file-size", { error: sizeError })}>Max {formatFileSize(maxFileSize)}</span>
         )}
         {filled && <FileSize source={value} />}
         <div className="leaf-file__overlay">
-          {!filled && isEditable && <button onClick={() => ref.current?.click()}>Select File</button>}
-          {!filled && isEditable && <button onClick={openUrlInput}>Paste Link</button>}
-          {filled && isEditable && <button onClick={handleReselect}>Reselect</button>}
-          {filled && isUploaded && <button onClick={download}>Download</button>}
-          {filled && isUploaded && <button onClick={copyURL}>Copy URL</button>}
+          {!filled && isEditable && (
+            <button className="leaf-body" onClick={() => ref.current?.click()}>
+              Select File
+            </button>
+          )}
+          {!filled && isEditable && (
+            <button className="leaf-body" onClick={openUrlInput}>
+              Paste Link
+            </button>
+          )}
+          {filled && isEditable && (
+            <button className="leaf-body" onClick={handleReselect}>
+              Reselect
+            </button>
+          )}
+          {filled && isUploaded && (
+            <button className="leaf-body" onClick={download}>
+              Download
+            </button>
+          )}
+          {filled && isUploaded && (
+            <button className="leaf-body" onClick={copyURL}>
+              Copy URL
+            </button>
+          )}
         </div>
         {showUrlInput && (
           <div className="leaf-file__url-input">
@@ -149,5 +170,5 @@ function FileSize({ source }: { source?: FileSource }) {
     if (!source) return setSize(0)
     void getFileSize(source).then(setSize)
   }, [source])
-  return <span className={cx("leaf-file-name")}>Max {formatFileSize(size)}</span>
+  return <span className={cx("leaf-file-size")}>{formatFileSize(size)}</span>
 }

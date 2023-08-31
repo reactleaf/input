@@ -1,9 +1,10 @@
-.leaf-suffix {
+.leaf-prefix {
   position: absolute;
   bottom: 50%;
-  right: 0.5rem;
-  padding-left: 0.25em;
+  left: 0.5rem;
+  padding-right: 0.25em;
+  padding-top: 2px;
   transform: translateY(50%);
-  color: var(--leaf-primary-50);
+  color: var(--leaf-primary-10);
   opacity: 0.5;
 }

@@ -53,7 +53,7 @@
     "build-storybook": "storybook build",
     "build": "yarn run build:common && yarn run build:types",
     "build:common": "esbuild index.ts --outdir=dist --sourcemap --bundle --minify",
-    "build:types": "tsc --emitDeclarationOnly --declaration --project tsconfig.build.json",
+    "build:types": "tsc --project tsconfig.build.json",
     "chromatic": "chromatic --project-token=baa9a92dee01 --auto-accept-changes",
     "prepare": "install-peers",
     "prepublishOnly": "npm run build"

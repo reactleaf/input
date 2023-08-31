@@ -3,8 +3,6 @@ import cx from "classnames"
 
 import useInnerRef from "@/hooks/useInnerRef"
 
-import X from "@/icons/X"
-
 export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string
   clearable?: boolean
@@ -80,7 +78,7 @@ export default React.forwardRef(function TextInput(
       })}
     >
       <div className="leaf-label-area">{label && <label className="leaf-label">{label}</label>}</div>
-      <div className="leaf-input-area">
+      <div className={cx("leaf-input-area", { clearable })}>
         <input
           {...inputProps}
           className={cx("leaf-body", inputProps.className)}
@@ -90,11 +88,7 @@ export default React.forwardRef(function TextInput(
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
         />
-        {isClearable && (
-          <button className="leaf-clear-button" onClick={handleClear} tabIndex={-1}>
-            <X size={16} />
-          </button>
-        )}
+        {isClearable && <button className="leaf-clear-button" onClick={handleClear} tabIndex={-1} />}
       </div>
       <div className="leaf-extra-area">
         {errorMessage && <p className={cx("leaf-error-message", "leaf-desc")}>{errorMessage}</p>}

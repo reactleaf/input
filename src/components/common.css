@@ -68,6 +68,10 @@
   transition: border-color 0.2s;
   overflow: hidden;
 
+  &.clearable {
+    padding-right: 1rem;
+  }
+
   &:hover .leaf-clear-button {
     display: block;
   }
@@ -79,6 +83,7 @@
     border-radius: 4px;
     border: none;
     outline: none;
+    background: none;
     &::placeholder {
       color: var(--placeholder-color);
       font-weight: 200;
@@ -101,12 +106,30 @@
   line-height: 0;
   cursor: pointer;
 
-  & svg {
-    stroke: var(--leaf-grey-10);
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 1px;
+    background: var(--leaf-grey-10);
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 1px;
+    background: var(--leaf-grey-10);
+    transform: translate(-50%, -50%) rotate(45deg);
   }
 
-  &:hover svg {
-    stroke: var(--leaf-status-red);
+  &:hover::before,
+  &:hover::after {
+    background: var(--leaf-status-red);
   }
 }
 

@@ -3,8 +3,6 @@ import cx from "classnames"
 
 import useInnerRef from "@/hooks/useInnerRef"
 
-import X from "@/icons/X"
-
 import { formatNumber, formatNumberWithCommas, parseNumber } from "./formatter"
 
 import "./NumberInput.css"
@@ -17,7 +15,7 @@ export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>,
   min?: number
   max?: number
   commas?: boolean
-  suffix?: string
+  prefix?: string
   onValueChange?: (value: number) => void
   onEnter?: (value: number) => void
 }
@@ -32,7 +30,7 @@ export default React.forwardRef(function NumberInput(
     min = 0,
     max,
     commas,
-    suffix,
+    prefix,
     onValueChange,
     onEnter,
     ...inputProps
@@ -40,19 +38,19 @@ export default React.forwardRef(function NumberInput(
   outerRef: React.Ref<HTMLInputElement>
 ) {
   const ref = useInnerRef(outerRef)
-  const suffixRef = useRef<HTMLSpanElement>(null)
+  const prefixRef = useRef<HTMLSpanElement>(null)
   const [filled, setFilled] = useState(isFilled(value))
   const [focused, setFocused] = useState(false)
 
   const formatter = commas ? formatNumberWithCommas : formatNumber
 
-  // suffix의 길이에 맞춰 padding-right 추가
+  // prefix의 길이에 맞춰 padding-left 추가
   useLayoutEffect(() => {
-    if (!suffixRef.current) return
+    if (!prefixRef.current) return
     if (ref.current) {
-      ref.current.style.paddingRight = `calc(10px + ${suffixRef.current.offsetWidth}px)`
+      ref.current.style.paddingLeft = `calc(10px + ${prefixRef.current.offsetWidth}px)`
     }
-  }, [suffix])
+  }, [prefix])
 
   useLayoutEffect(() => {
     if (typeof value !== "number") return
@@ -163,7 +161,12 @@ export default React.forwardRef(function NumberInput(
       })}
     >
       <div className="leaf-label-area">{label && <label className="leaf-label">{label}</label>}</div>
-      <div className="leaf-input-area">
+      <div className={cx("leaf-input-area", { clearable })}>
+        {prefix && (
+          <span className={cx("leaf-prefix", "leaf-label")} ref={prefixRef}>
+            {prefix}
+          </span>
+        )}
         <input
           {...inputProps}
           className={cx("leaf-body", inputProps.className)}
@@ -173,18 +176,9 @@ export default React.forwardRef(function NumberInput(
           onFocus={handleFocus}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          style={{ textAlign: "right", ...inputProps.style }}
+          style={inputProps.style}
         />
-        {suffix && (
-          <span className={cx("leaf-suffix", "leaf-label")} ref={suffixRef}>
-            {suffix}
-          </span>
-        )}
-        {isClearable && (
-          <button className="leaf-clear-button" onClick={handleClear} tabIndex={-1}>
-            <X size={16} />
-          </button>
-        )}
+        {isClearable && <button className="leaf-clear-button" onClick={handleClear} tabIndex={-1} />}
       </div>
       <div className="leaf-extra-area">
         {errorMessage && <p className={cx("leaf-error-message", "leaf-desc")}>{errorMessage}</p>}

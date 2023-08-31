@@ -21,13 +21,13 @@ export const Basic: Story = {
 
 export const Commas: Story = {
   args: {
-    label: "Using commas and suffix",
+    label: "Using commas and prefix",
     placeholder: "xxx,xxx,xxx",
     clearable: true,
     min: -999_999_999,
     max: 999_999_999,
     step: 100,
-    suffix: "$",
+    prefix: "$",
     commas: true,
   },
 }
@@ -48,7 +48,7 @@ export const Playground: Story = {
     min: -999_999_999,
     max: 999_999_999,
     step: 100,
-    suffix: "$",
+    prefix: "₩",
     commas: true,
   },
   argTypes: {
@@ -73,7 +73,7 @@ export const Playground: Story = {
       description: "Error message that makes input red if exists",
       table: { type: { summary: "string" }, category: "Extended Props" },
     },
-    suffix: {
+    prefix: {
       table: { type: { summary: "string" }, category: "Extended Props" },
     },
     commas: {
