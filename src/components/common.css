@@ -141,3 +141,21 @@
   padding-left: 0.25rem;
   color: var(--leaf-status-red);
 }
+
+/* PasswordInput */
+.leaf-password-input .leaf-clear-button {
+  right: 1.25rem;
+}
+.leaf-password-eye {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-0.25rem, -50%);
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  border: none;
+  background: none;
+  line-height: 0;
+  cursor: pointer;
+}
