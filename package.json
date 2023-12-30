@@ -1,6 +1,6 @@
 {
   "name": "@reactleaf/input",
-  "version": "0.1.0-beta.0",
+  "version": "0.2.0-beta.0",
   "description": "Variable React Input components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@reactleaf/theme": "1.2.1",
+    "@reactleaf/theme": "2.0.0-beta.0",
     "classnames": "^2.3.2",
     "react": "^18",
     "react-dom": "^18",
