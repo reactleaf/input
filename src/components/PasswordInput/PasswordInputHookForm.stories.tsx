@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import PasswordInput from "@/components/PasswordInput"
+import PasswordInput from "@/components/PasswordInput/hookform"
 
-const meta: Meta<typeof PasswordInput.HookForm> = {
+const meta: Meta<typeof PasswordInput> = {
   title: "Components/PasswordInput",
-  component: PasswordInput.HookForm,
+  component: PasswordInput,
 }
 
 export default meta
 
-export const HookForm: StoryObj<typeof PasswordInput.HookForm> = {
+export const HookForm: StoryObj<typeof PasswordInput> = {
   name: "Example with HookForm",
   args: {
     name: "name",

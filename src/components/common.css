@@ -52,6 +52,7 @@
   color: var(--leaf-grey-10);
   opacity: 0.5;
   transition: color 0.2s;
+  line-height: 0;
 
   & label {
     padding-left: 0.25rem;

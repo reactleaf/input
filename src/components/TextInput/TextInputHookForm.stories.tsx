@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import TextInput from "@/components/TextInput"
+import TextInput from "@/components/TextInput/hookform"
 
-const meta: Meta<typeof TextInput.HookForm> = {
+const meta: Meta<typeof TextInput> = {
   title: "Components/TextInput",
-  component: TextInput.HookForm,
+  component: TextInput,
 }
 
 export default meta
 
-export const HookForm: StoryObj<typeof TextInput.HookForm> = {
+export const HookForm: StoryObj<typeof TextInput> = {
   name: "Example with HookForm",
   args: {
     name: "name",

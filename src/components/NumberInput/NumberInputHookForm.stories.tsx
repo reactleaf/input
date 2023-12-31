@@ -1,7 +1,7 @@
-import React, { useEffect } from "react"
+import React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 
-import NumberInput from "@/components/NumberInput"
+import NumberInput from "@/components/NumberInput/hookform"
 import { FormProvider, useForm } from "react-hook-form"
 
 const meta: Meta<typeof NumberInput> = {
@@ -11,7 +11,7 @@ const meta: Meta<typeof NumberInput> = {
 
 export default meta
 
-type Story = StoryObj<typeof NumberInput.HookForm>
+type Story = StoryObj<typeof NumberInput>
 
 export const HookForm: Story = {
   name: "Example with HookForm",
@@ -67,7 +67,7 @@ export const HookForm: Story = {
     const form = useForm({ defaultValues: { amount: 12345.6 } })
     return (
       <FormProvider {...form}>
-        <NumberInput.HookForm {...args} name="amount" />
+        <NumberInput {...args} name="amount" />
       </FormProvider>
     )
   },

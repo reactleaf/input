@@ -1,7 +1,7 @@
 import React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 
-import FileInput from "@/components/FileInput"
+import FileInput from "@/components/FileInput/hookform"
 import { FormProvider, useForm } from "react-hook-form"
 
 const meta: Meta<typeof FileInput> = {
@@ -11,7 +11,7 @@ const meta: Meta<typeof FileInput> = {
 
 export default meta
 
-type Story = StoryObj<typeof FileInput.HookForm>
+type Story = StoryObj<typeof FileInput>
 
 export const HookForm: Story = {
   args: {
@@ -53,7 +53,7 @@ export const HookForm: Story = {
     const form = useForm()
     return (
       <FormProvider {...form}>
-        <FileInput.HookForm {...args} name="image" />
+        <FileInput {...args} name="image" />
       </FormProvider>
     )
   },

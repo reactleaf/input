@@ -1,6 +1,6 @@
 {
   "name": "@reactleaf/input",
-  "version": "0.2.0-beta.5",
+  "version": "0.2.0-beta.6",
   "description": "Variable React Input components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,8 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@reactleaf/theme": "2.0.0-beta.0",
-    "classnames": "^2.3.2",
-    "react-hook-form": "^7"
+    "classnames": "^2.3.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.21.4",
@@ -41,6 +40,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0",
     "storybook": "^7.4.0",
     "tsc-alias": "^1.8.8",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
@@ -53,7 +53,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build": "rm -rf dist && pnpm run build:common && pnpm run build:types",
-    "build:common": "esbuild src/index.ts --bundle --platform=node --outdir=dist --external:react-dom --external:react",
+    "build:common": "esbuild src/index.ts src/hookform.tsx --bundle --platform=node --outdir=dist --external:react-dom --external:react --external:react-hook-form",
     "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
     "chromatic": "chromatic --project-token=baa9a92dee01 --auto-accept-changes",
     "prepublishOnly": "npm run build"
@@ -64,6 +64,7 @@
   "homepage": "https://github.com/reactleaf/input#readme",
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0"
   }
 }
