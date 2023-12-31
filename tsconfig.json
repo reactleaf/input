@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "lib": ["DOM", "ES2020"],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

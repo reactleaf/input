@@ -1,6 +1,6 @@
 {
   "name": "@reactleaf/input",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.2",
   "description": "Variable React Input components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -42,6 +42,7 @@
     "prettier": "^2.8.7",
     "prop-types": "^15.8.1",
     "storybook": "^7.4.0",
+    "tsc-alias": "^1.8.8",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
     "typescript": "^5.0.4"
   },
@@ -52,8 +53,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build": "yarn run build:common && yarn run build:types",
-    "build:common": "esbuild index.ts --outdir=dist",
-    "build:types": "tsc --project tsconfig.build.json",
+    "build:common": "esbuild index.ts --outdir=dist --sourcemap --bundle",
+    "build:types": "tsc --project tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "chromatic": "chromatic --project-token=baa9a92dee01 --auto-accept-changes",
     "prepublishOnly": "npm run build"
   },
