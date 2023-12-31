@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import FileInputPure, { Props } from "./FileInput"
 import { Controller, UseControllerProps } from "react-hook-form"

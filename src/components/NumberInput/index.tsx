@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import NumberInputPure, { Props } from "./NumberInput"
 import { Controller, UseControllerProps } from "react-hook-form"
