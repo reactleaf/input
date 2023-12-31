@@ -6,7 +6,10 @@ interface HookFormProps extends Omit<Props, "name" | "defaultValue" | "value" | 
 
 export default function FileInput(props: HookFormProps) {
   const { name, rules, defaultValue, control, shouldUnregister, ...inputProps } = props
-  const controllerProps = { name, rules, defaultValue, control, shouldUnregister }
+  const controllerProps: UseControllerProps = { name, rules, defaultValue, shouldUnregister }
+  if (control) {
+    controllerProps.control = control
+  }
 
   return (
     <Controller
