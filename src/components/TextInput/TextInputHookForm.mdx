@@ -3,9 +3,9 @@ import * as Stories from "./TextInputHookForm.stories"
 
 <Meta name="HookForm" of={Stories} />
 
-# \<TextInput.HookForm />
+# \<TextInput />
 
-TextInput.HookForm is a `react-hook-form` support version of TextInput. \
+TextInput is a `react-hook-form` support version of TextInput. \
 This component simply extends `<input type="text" />` with styles
 
 <Canvas of={Stories.HookForm} />
@@ -14,14 +14,14 @@ This component simply extends `<input type="text" />` with styles
 
 ```tsx
 import { useForm, FormProvider } from "react-hook-form"
-import { TextInput } from "@reactleaf/input"
+import { TextInput } from "@reactleaf/input/hookform"
 
 function FormComponent() {
   const form = useForm()
 
   return (
     <FormProvider {...form}>
-      <TextInput.HookForm name="name" label="Name" />
+      <TextInput name="name" label="Name" />
     </FormProvider>
   )
 }
@@ -29,8 +29,7 @@ function FormComponent() {
 
 ### Extended Props
 
-`<TextInput.HookForm />` is almost same with `<TextInput />`
-and also receive props for `<Controller />` such as `name` or `rules`
+This components extended from raw component. Just add some props for `<Controller />` such as `name` or `rules`
 
 - `value` - is excluded. `value` is handled by `react-hook-form`.
 

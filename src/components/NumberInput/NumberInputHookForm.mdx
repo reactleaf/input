@@ -3,9 +3,9 @@ import * as Stories from "./NumberInputHookForm.stories"
 
 <Meta name="HookForm" of={Stories} />
 
-# \<NumberInput.HookForm />
+# \<NumberInput />
 
-NumberInput.HookForm is a `react-hook-form` support version of NumberInput. \
+NumberInput is a `react-hook-form` support version of NumberInput.
 
 <Canvas of={Stories.HookForm} />
 
@@ -13,20 +13,22 @@ NumberInput.HookForm is a `react-hook-form` support version of NumberInput. \
 
 ```tsx
 import { useForm, FormProvider } from "react-hook-form"
-import { NumberInput } from "@reactleaf/input"
+import { NumberInput } from "@reactleaf/input/hookform"
 
 function FormComponent() {
   const form = useForm()
 
   return (
     <FormProvider {...form}>
-      <NumberInput.HookForm name="amount" label="Amount" placeholder="Placeholder" />
+      <NumberInput name="amount" label="Amount" placeholder="Placeholder" />
     </FormProvider>
   )
 }
 ```
 
 ### Extended Props
+
+This components extended from raw component. Just add some props for `<Controller />` such as `name` or `rules`
 
 > **WARNING** \
 > `<NumberInput />` actually use `<input type="text" />` internally, to support number formatting. \

@@ -3,9 +3,9 @@ import * as Stories from "./FileInputHookForm.stories"
 
 <Meta name="HookForm" of={Stories} />
 
-# \<FileInput.HookForm />
+# \<FileInput />
 
-FileInput.HookForm is a `react-hook-form` support version of FileInput. \
+FileInput is a `react-hook-form` support version of FileInput.
 
 <Canvas of={Stories.HookForm} />
 
@@ -13,7 +13,7 @@ FileInput.HookForm is a `react-hook-form` support version of FileInput. \
 
 ```tsx
 import { useForm, FormProvider } from "react-hook-form"
-import { FileInput } from "@reactleaf/input"
+import { FileInput } from "@reactleaf/input/hookform"
 
 function FormComponent() {
   const form = useForm()
@@ -27,5 +27,7 @@ function FormComponent() {
 ```
 
 ### Extended Props
+
+This components extended from raw component. Just add some props for `<Controller />` such as `name` or `rules`
 
 <ArgTypes of={Stories.HookForm} />

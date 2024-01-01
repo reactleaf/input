@@ -8,12 +8,16 @@ I used to handle forms with `react-hook-form`. But some UI libraries needs to be
 So I made my own components that are perfectly compatible with `react-hook-form`.
 But also in some cases, I need pure inputs, that `hook-form` is over-engineered.
 
-`@reactleaf/input` is designed for usecases that are compatible with `react-hook-form`, but can be used without `react-hook-form`.
+`@reactleaf/input` is designed for usecases that are pure inputs.
+
+`@reactleaf/input/hookform` is designed for usecases that are `react-hook-form` compatible. It exports same components, but needs some hook-form props: `name`.
 
 ## Installation
 
 ```sh
-yarn add @reactleaf/input
+pnpm add @reactleaf/input
+
+# react-hook-form is peer-dependency.
 ```
 
 ## Examples
@@ -32,14 +36,22 @@ function FormComponent() {
 ### Easily combined with `react-hook-form`
 
 ```tsx
-import { TextInput } from "@reactleaf/input"
+import { TextInput } from "@reactleaf/input/hookform"
 
 function FormComponent() {
   const form = useForm({ defaultValues: { street1: "" } })
   return (
-    <FormContextProvider {...form}>
-      <TextInput.HookForm name="street1" label="Street 1" />
-    </FormContextProvider>
+    <>
+      <WithFormProvider>
+        <FormProvider {...form}>
+          <TextInput name="street1" label="Street 1" />
+        </FormProvider>
+      </WithFormProvider>
+
+      <WithoutFormProvider>
+        <TextInput name="street2" label="Street 2" control={form.control} />
+      </WithoutFormProvider>
+    </>
   )
 }
 ```
