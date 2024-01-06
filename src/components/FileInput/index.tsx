@@ -117,27 +117,27 @@ export default React.forwardRef(function FileInput(
         {filled && <FileSize source={value} />}
         <div className="leaf-file__overlay">
           {!filled && isEditable && (
-            <button className="leaf-body" onClick={() => ref.current?.click()}>
+            <button type="button" className="leaf-body" onClick={() => ref.current?.click()}>
               Select File
             </button>
           )}
           {!filled && isEditable && (
-            <button className="leaf-body" onClick={openUrlInput}>
+            <button type="button" className="leaf-body" onClick={openUrlInput}>
               Paste Link
             </button>
           )}
           {filled && isEditable && (
-            <button className="leaf-body" onClick={handleReselect}>
+            <button type="button" className="leaf-body" onClick={handleReselect}>
               Reselect
             </button>
           )}
           {filled && isUploaded && (
-            <button className="leaf-body" onClick={download}>
+            <button type="button" className="leaf-body" onClick={download}>
               Download
             </button>
           )}
           {filled && isUploaded && (
-            <button className="leaf-body" onClick={copyURL}>
+            <button type="button" className="leaf-body" onClick={copyURL}>
               Copy URL
             </button>
           )}
@@ -151,7 +151,9 @@ export default React.forwardRef(function FileInput(
               onValueChange={seturl}
               onEnter={setUrlValue}
             />
-            <button onClick={setUrlValue}>Confirm</button>
+            <button type="button" onClick={setUrlValue}>
+              Confirm
+            </button>
           </div>
         )}
       </div>

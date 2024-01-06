@@ -88,7 +88,7 @@ export default React.forwardRef(function TextInput(
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
         />
-        {isClearable && <button className="leaf-clear-button" onClick={handleClear} tabIndex={-1} />}
+        {isClearable && <button type="button" className="leaf-clear-button" onClick={handleClear} tabIndex={-1} />}
       </div>
       <div className="leaf-extra-area">
         {errorMessage && <p className={cx("leaf-error-message", "leaf-desc")}>{errorMessage}</p>}

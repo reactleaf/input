@@ -92,11 +92,11 @@ export default React.forwardRef(function PasswordInput(
           onKeyDown={handleKeyDown}
         />
         {!inputProps.disabled && !inputProps.readOnly && (
-          <button className="leaf-password-eye" onClick={() => setShowPassword((e) => !e)} tabIndex={-1}>
+          <button type="button" className="leaf-password-eye" onClick={() => setShowPassword((e) => !e)} tabIndex={-1}>
             <Eye opened={showPassword} />
           </button>
         )}
-        {isClearable && <button className="leaf-clear-button" onClick={handleClear} tabIndex={-1} />}
+        {isClearable && <button type="button" className="leaf-clear-button" onClick={handleClear} tabIndex={-1} />}
       </div>
       <div className="leaf-extra-area">
         {errorMessage && <p className={cx("leaf-error-message", "leaf-desc")}>{errorMessage}</p>}
