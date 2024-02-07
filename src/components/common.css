@@ -10,7 +10,7 @@
     .leaf-label-area {
       opacity: 1;
     }
-    .leaf-input-area {
+    .leaf-input {
       border-color: var(--leaf-grey-10);
     }
   }
@@ -19,7 +19,7 @@
     .leaf-label-area {
       opacity: 1;
     }
-    .leaf-input-area {
+    .leaf-input {
       border-color: var(--leaf-primary-50);
     }
   }
@@ -29,12 +29,12 @@
       color: var(--leaf-status-red);
       opacity: 1;
     }
-    .leaf-input-area {
+    .leaf-input {
       border-color: var(--leaf-status-red);
     }
   }
   &.disabled {
-    .leaf-input-area {
+    .leaf-input {
       background-color: var(--leaf-grey-90);
     }
   }
@@ -62,32 +62,29 @@
   position: relative;
   display: flex;
   align-items: center;
-  border: 1px solid var(--leaf-grey-70);
-  border-radius: 4px;
-  background: white;
-  transition: border-color 0.2s;
   overflow: hidden;
-
-  &.clearable {
-    padding-right: 1rem;
-  }
 
   &:hover .leaf-clear-button {
     display: block;
   }
+}
 
-  & input {
-    width: 100%;
-    height: 2rem;
-    padding: 0 0.5em;
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    background: none;
-    &::placeholder {
-      color: var(--placeholder-color);
-      font-weight: 200;
-    }
+.leaf-input {
+  width: 100%;
+  height: 2rem;
+  padding: 0 0.5em;
+  border: 1px solid var(--leaf-grey-70);
+  border-radius: 4px;
+  outline: none;
+  background: white;
+  transition: border-color 0.2s;
+  &::placeholder {
+    color: var(--placeholder-color);
+    font-weight: 200;
+  }
+
+  &.clearable {
+    padding-right: 1.5rem;
   }
 }
 
@@ -143,6 +140,9 @@
 }
 
 /* PasswordInput */
+.leaf-password-input .leaf-input {
+  padding-right: 3rem;
+}
 .leaf-password-input .leaf-clear-button {
   right: 1.25rem;
 }

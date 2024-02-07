@@ -78,10 +78,10 @@ export default React.forwardRef(function TextInput(
       })}
     >
       <div className="leaf-label-area">{label && <label className="leaf-label">{label}</label>}</div>
-      <div className={cx("leaf-input-area", { clearable })}>
+      <div className={cx("leaf-input-area")}>
         <input
           {...inputProps}
-          className={cx("leaf-body", inputProps.className)}
+          className={cx("leaf-input", { clearable }, inputProps.className)}
           ref={ref}
           onChange={handleChange}
           onFocus={handleFocus}

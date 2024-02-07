@@ -161,7 +161,7 @@ export default React.forwardRef(function NumberInput(
       })}
     >
       <div className="leaf-label-area">{label && <label className="leaf-label">{label}</label>}</div>
-      <div className={cx("leaf-input-area", { clearable })}>
+      <div className={cx("leaf-input-area")}>
         {prefix && (
           <span className={cx("leaf-prefix", "leaf-label")} ref={prefixRef}>
             {prefix}
@@ -169,7 +169,7 @@ export default React.forwardRef(function NumberInput(
         )}
         <input
           {...inputProps}
-          className={cx("leaf-body", inputProps.className)}
+          className={cx("leaf-input", { clearable }, inputProps.className)}
           type="text"
           ref={ref}
           onChange={handleChange}

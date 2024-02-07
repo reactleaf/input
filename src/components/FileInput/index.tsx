@@ -104,7 +104,7 @@ export default React.forwardRef(function FileInput(
       <div className="leaf-input-area">
         <input
           {...inputProps}
-          className={cx("leaf-body", inputProps.className)}
+          className={cx("leaf-input", inputProps.className)}
           type="file"
           ref={ref}
           onChange={handleChange}
