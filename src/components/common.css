@@ -1,7 +1,6 @@
 .leaf-input-container {
   position: relative;
-  display: inline-flex;
-  flex-direction: column;
+  display: inline-block;
   width: 100%;
   min-width: 10rem;
 
@@ -159,4 +158,34 @@
   background: none;
   line-height: 0;
   cursor: pointer;
+}
+
+/* Combobox */
+.leaf-combobox-container {
+  position: relative;
+  width: 100%;
+}
+.leaf-dropdown {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  transform: translateY(-1rem);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: white;
+  box-shadow: 0 0 4px 2px #0000001f;
+  border-radius: 4px;
+  overflow: auto;
+}
+
+.leaf-dropdown-item {
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--leaf-primary-98);
+  }
+  &[data-focused="true"] {
+    background-color: var(--leaf-primary-98);
+  }
 }

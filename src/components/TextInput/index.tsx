@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { ChangeEvent, useState } from "react"
 import cx from "classnames"
 
 import useInnerRef from "@/hooks/useInnerRef"

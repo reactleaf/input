@@ -1,0 +1,42 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/blocks"
+import * as Stories from "./Combobox.stories"
+
+<Meta name="Overview" of={Stories} />
+
+# \<Combobox />
+
+Combobox is a dropdown component of `@reactleaf/input` \
+This component is based on `<TextInput />`.
+
+Important feature of Combobox is: The value will be set to one of the options or empty string.\
+Other string value will be ignored.
+
+<Canvas of={Stories.Basic} />
+<Canvas of={Stories.Disabled} />
+
+### Usage
+
+```tsx
+import { Combobox } from "@reactleaf/input"
+
+function FormComponent() {
+  return <Combobox label="Name" options={[{ label: "Option 1" }, { label: "Option 2" }, { label: "Option 3" }]} />
+}
+```
+
+### Types
+
+type `Option` should have a `label` property.
+
+```ts
+interface Option {
+  label: string
+}
+```
+
+### Extended Props
+
+`<Combobox />` extends all props of `<TextInput />`
+and supports more props below.
+
+<ArgTypes of={Stories.Playground} include={["options", "onComplete", "getOptionLabel"]} />

@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/blocks"
+import * as Stories from "./ComboboxHookForm.stories"
+
+<Meta name="HookForm" of={Stories} />
+
+# \<Combobox />
+
+Combobox is a `react-hook-form` support version of Combobox.
+
+<Canvas of={Stories.HookForm} />
+
+### Usage
+
+```tsx
+import { useForm, FormProvider } from "react-hook-form"
+import { Combobox } from "@reactleaf/input/hookform"
+
+function FormComponent() {
+  const form = useForm()
+  const options = [{ label: "Option 1" }, { label: "Option 2" }, { label: "Option 3" }]
+
+  return (
+    <FormProvider {...form}>
+      <Combobox name="option" label="Option" options={options} />
+    </FormProvider>
+  )
+}
+```
+
+### Types
+
+type `Option` should have a `label` property.
+
+```ts
+interface Option {
+  label: string
+}
+```
+
+### Extended Props
+
+This components extended from raw component. Just add some props for `<Controller />` such as `name` or `rules`
+
+<ArgTypes of={Stories.HookForm} include={["options", "onComplete", "getOptionLabel"]} />

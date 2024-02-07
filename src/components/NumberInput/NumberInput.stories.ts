@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import NumberInput, { formatNumberWithCommas } from "@/components/NumberInput"
+import NumberInput from "@/components/NumberInput"
 
 const meta: Meta<typeof NumberInput> = {
   title: "Components/NumberInput",
