@@ -14,7 +14,7 @@ export interface Props<Option> extends TextInputProps {
   options: Option[]
 }
 
-export default React.forwardRef(function Combobox<Option extends { label: string }>(
+function Combobox<Option extends { label: string }>(
   { onChange, onComplete, getOptionLabel = defaultGetOptionLabel, options: rawOptions, ...inputProps }: Props<Option>,
   outerRef: React.Ref<HTMLInputElement>
 ) {
@@ -148,4 +148,12 @@ export default React.forwardRef(function Combobox<Option extends { label: string
       )}
     </div>
   )
-})
+}
+
+// Generic Props + forwardRef 조합 시 generic type을 잃어버리는 문제
+// https://stackoverflow.com/questions/58469229/react-with-typescript-generics-while-using-react-forwardref/58473012
+const TypeCastedCombobox = React.forwardRef(Combobox) as <Option extends { label: string }>(
+  p: Props<Option> & { ref?: React.Ref<HTMLDivElement> }
+) => React.ReactElement
+
+export default TypeCastedCombobox

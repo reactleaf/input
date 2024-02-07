@@ -25,7 +25,7 @@ export default function Combobox<Option extends { label: string }>(props: HookFo
           value={field.value}
           ref={field.ref}
           options={inputProps.options}
-          onComplete={(v: Option | null) => {
+          onComplete={(v) => {
             field.onChange(v?.label)
             inputProps.onComplete?.(v)
           }}
