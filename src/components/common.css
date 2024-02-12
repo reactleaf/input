@@ -4,11 +4,11 @@
   width: 100%;
   min-width: 10rem;
 
-  --placeholder-color: var(--leaf-grey-70);
+  --placeholder-color: var(--leaf-grey-80);
 
   &.filled {
     .leaf-label-area {
-      opacity: 1;
+      color: var(--leaf-grey-10);
     }
     .leaf-input {
       border-color: var(--leaf-grey-10);
@@ -17,17 +17,16 @@
 
   &.focused {
     .leaf-label-area {
-      opacity: 1;
+      color: var(--leaf-grey-10);
     }
     .leaf-input {
-      border-color: var(--leaf-primary-50);
+      border-color: var(--leaf-primary-60);
     }
   }
 
   &.error {
     .leaf-label-area {
       color: var(--leaf-status-red);
-      opacity: 1;
     }
     .leaf-input {
       border-color: var(--leaf-status-red);
@@ -36,6 +35,11 @@
   &.disabled {
     .leaf-input {
       background-color: var(--leaf-grey-90);
+    }
+  }
+  &:not(.disabled):not(.filled):not(.focused):not(.error):hover {
+    .leaf-input {
+      border-color: var(--leaf-grey-70);
     }
   }
 
@@ -48,8 +52,7 @@
   position: relative;
   height: 1.25rem;
   text-align: left;
-  color: var(--leaf-grey-10);
-  opacity: 0.5;
+  color: var(--leaf-grey-70);
   transition: color 0.2s;
   line-height: 0;
 
@@ -71,9 +74,9 @@
 
 .leaf-input {
   width: 100%;
-  height: 2rem;
+  height: 2.25rem;
   padding: 0 0.5em;
-  border: 1px solid var(--leaf-grey-70);
+  border: 1px solid var(--leaf-grey-80);
   border-radius: 4px;
   outline: none;
   background: white;
