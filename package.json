@@ -21,7 +21,8 @@
   "license": "MIT",
   "dependencies": {
     "@reactleaf/theme": "2.0.0-beta.0",
-    "classnames": "^2.3.2"
+    "classnames": "^2.3.2",
+    "react-select": "^5.8.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.21.4",

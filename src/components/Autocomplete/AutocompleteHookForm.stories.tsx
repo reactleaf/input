@@ -1,16 +1,16 @@
 import React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
-import Combobox from "@/components/Combobox/hookform"
+import Autocomplete from "@/components/Autocomplete/hookform"
 import { FormProvider, useForm } from "react-hook-form"
 
-const meta: Meta<typeof Combobox> = {
-  title: "Components/Combobox",
-  component: Combobox,
+const meta: Meta<typeof Autocomplete> = {
+  title: "Components/Autocomplete",
+  component: Autocomplete,
 }
 
 export default meta
 
-export const HookForm: StoryObj<typeof Combobox> = {
+export const HookForm: StoryObj<typeof Autocomplete> = {
   args: {
     label: "Label",
     placeholder: "Placeholder",
@@ -35,7 +35,7 @@ export const HookForm: StoryObj<typeof Combobox> = {
     const form = useForm({ defaultValues: { option: "Option 1" } })
     return (
       <FormProvider {...form}>
-        <Combobox {...args} name="option" label="Label" />
+        <Autocomplete {...args} name="option" label="Label" />
       </FormProvider>
     )
   },

@@ -1,11 +1,11 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/blocks"
-import * as Stories from "./ComboboxHookForm.stories"
+import * as Stories from "./AutocompleteHookForm.stories"
 
 <Meta name="HookForm" of={Stories} />
 
-# \<Combobox />
+# \<Autocomplete />
 
-`@reactleaf/input` provides `react-hook-form` supported version of Combobox.
+`@reactleaf/input` provides `react-hook-form` supported version of Autocomplete.
 
 <Canvas of={Stories.HookForm} />
 
@@ -13,7 +13,7 @@ import * as Stories from "./ComboboxHookForm.stories"
 
 ```tsx
 import { useForm, FormProvider } from "react-hook-form"
-import { Combobox } from "@reactleaf/input/hookform"
+import { Autocomplete } from "@reactleaf/input/hookform"
 
 function FormComponent() {
   const form = useForm()
@@ -23,7 +23,7 @@ function FormComponent() {
 
   return (
     <FormProvider {...form}>
-      <Combobox name="option" label="Option" options={options} />
+      <Autocomplete name="option" label="Option" options={options} />
     </FormProvider>
   )
 }
@@ -35,8 +35,6 @@ checkout the [react-select documentation](https://react-select.com/props) for mo
 
 ### Extended Props
 
-`<Combobox />` extends almost all props of `<Select />`. And add some props for `<Controller />` such as `name` or `rules`.
-
-To limit searchability, set `isSearchable={false}`
+`<Autocomplete />` extends almost all props of `<Creatable />`. And add some props for `<Controller />` such as `name` or `rules`
 
 <ArgTypes of={Stories.HookForm} include={["name", "label"]} />

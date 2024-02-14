@@ -1,14 +1,15 @@
+import React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
-import Combobox from "@/components/Combobox"
+import Autocomplete from "@/components/Autocomplete"
 
-const meta: Meta<typeof Combobox> = {
-  title: "Components/Combobox",
-  component: Combobox,
+const meta: Meta<typeof Autocomplete> = {
+  title: "Components/Autocomplete",
+  component: Autocomplete,
 }
 
 export default meta
 
-export const Basic: StoryObj<typeof Combobox> = {
+export const Basic: StoryObj<typeof Autocomplete> = {
   args: {
     label: "Label",
     placeholder: "Placeholder",
@@ -27,7 +28,7 @@ export const Basic: StoryObj<typeof Combobox> = {
   },
 }
 
-export const Multi: StoryObj<typeof Combobox> = {
+export const Multi: StoryObj<typeof Autocomplete> = {
   args: {
     label: "Label",
     placeholder: "Placeholder",
@@ -37,6 +38,11 @@ export const Multi: StoryObj<typeof Combobox> = {
       { label: "Option 2", value: "Option 2" },
       { label: "Option 3", value: "Option 3" },
     ],
+    formatCreateLabel: (inputValue: string) => (
+      <>
+        Add Option : <b>{inputValue}</b>
+      </>
+    ),
   },
   parameters: {
     docs: {
@@ -47,7 +53,7 @@ export const Multi: StoryObj<typeof Combobox> = {
   },
 }
 
-export const Disabled: StoryObj<typeof Combobox> = {
+export const Disabled: StoryObj<typeof Autocomplete> = {
   args: {
     label: "Label",
     placeholder: "Placeholder",
@@ -67,7 +73,7 @@ export const Disabled: StoryObj<typeof Combobox> = {
   },
 }
 
-export const Playground: StoryObj<typeof Combobox> = {
+export const Playground: StoryObj<typeof Autocomplete> = {
   args: {
     label: "Playground",
     placeholder: "Placeholder",

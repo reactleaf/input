@@ -34,7 +34,7 @@
   }
   &.disabled {
     .leaf-input {
-      background-color: var(--leaf-grey-90);
+      background-color: var(--leaf-grey-95);
     }
   }
   &:not(.disabled):not(.filled):not(.focused):not(.error):hover {
@@ -83,7 +83,6 @@
   transition: border-color 0.2s;
   &::placeholder {
     color: var(--placeholder-color);
-    font-weight: 200;
   }
 
   &.clearable {

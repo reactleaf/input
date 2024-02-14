@@ -1,35 +1,35 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/blocks"
-import * as Stories from "./Combobox.stories"
+import * as Stories from "./Autocomplete.stories"
 
 <Meta name="Overview" of={Stories} />
 
-# \<Combobox />
+# \<Autocomplete />
 
-Combobox overrides `react-select`'s `<Select>` components with `@reactleaf`'s style.
+Autocomplete overrides `react-select`'s `<Creatable>` components with `@reactleaf`'s style.
 
 So, almost every props from `react-select` is available, includes `isMulti`.
 
-### Basic `<Combobox />`
+### Basic `<Autocomplete />`
 
 <Canvas of={Stories.Basic} />
 
-### MultiSelect `<Combobox isMulti />`
+### MultiSelect `<Autocomplete isMulti />`
 
 <Canvas of={Stories.Multi} />
 
-### Disabled `<Combobox isDisabled />`
+### Disabled `<Autocomplete isDisabled />`
 
 <Canvas of={Stories.Disabled} />
 
 ### Usage
 
 ```tsx
-import { Combobox } from "@reactleaf/input"
+import { Autocomplete } from "@reactleaf/input"
 
 function FormComponent() {
   // options requires label and value field
   const options = ["Option 1", "Option 2", "Option 3"].map((label) => ({ label, value }))
-  return <Combobox label="Name" options={options} />
+  return <Autocomplete label="Name" options={options} />
 }
 ```
 
@@ -39,9 +39,7 @@ checkout the [react-select documentation](https://react-select.com/props) for mo
 
 ### Extended Props
 
-`<Combobox />` extends almost all props of `<Select />`
+`<Autocomplete />` extends almost all props of `<Creatable />`
 and supports more props below.
-
-To limit searchability, set `isSearchable={false}`
 
 <ArgTypes of={Stories.Playground} include={["label", "errorMessage"]} />
