@@ -1,0 +1,10 @@
+.react-datepicker__input-container {
+  display: flex;
+}
+
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+  height: 20px;
+}
+.react-datepicker__view-calendar-icon input.leaf-input {
+  padding: 0 0.5rem 0 1.75rem;
+}

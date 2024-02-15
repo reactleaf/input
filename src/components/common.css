@@ -38,7 +38,7 @@
     }
   }
   &:not(.disabled):not(.filled):not(.focused):not(.error):hover {
-    .leaf-input {
+    .leaf-input:not(:focus) {
       border-color: var(--leaf-grey-70);
     }
   }
@@ -65,7 +65,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  width: 100%;
 
   &:hover .leaf-clear-button {
     display: block;
@@ -84,13 +84,16 @@
   &::placeholder {
     color: var(--placeholder-color);
   }
+  &:focus {
+    border-color: var(--leaf-primary-60);
+  }
 
   &.clearable {
     padding-right: 1.5rem;
   }
 }
 
-.leaf-clear-button {
+.leaf-clear-button.leaf-clear-button {
   position: absolute;
   top: 50%;
   right: 0;
@@ -102,6 +105,7 @@
   border: none;
   background: var(--leaf-primary-95);
   border-radius: 50%;
+  color: var(--leaf-grey-70);
   line-height: 0;
   cursor: pointer;
 
@@ -112,7 +116,10 @@
     left: 50%;
     width: 10px;
     height: 1px;
-    background: var(--leaf-grey-10);
+    padding: 0;
+    border-radius: unset;
+    background-color: currentColor;
+    color: inherit;
     transform: translate(-50%, -50%) rotate(-45deg);
   }
   &::after {
@@ -122,13 +129,15 @@
     left: 50%;
     width: 10px;
     height: 1px;
-    background: var(--leaf-grey-10);
+    padding: 0;
+    border-radius: unset;
+    background-color: currentColor;
+    color: inherit;
     transform: translate(-50%, -50%) rotate(45deg);
   }
 
-  &:hover::before,
-  &:hover::after {
-    background: var(--leaf-status-red);
+  &:hover {
+    color: var(--leaf-grey-10);
   }
 }
 
@@ -160,34 +169,4 @@
   background: none;
   line-height: 0;
   cursor: pointer;
-}
-
-/* Combobox */
-.leaf-combobox-container {
-  position: relative;
-  width: 100%;
-}
-.leaf-dropdown {
-  position: absolute;
-  width: 100%;
-  z-index: 1;
-  transform: translateY(-1rem);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background: white;
-  box-shadow: 0 0 4px 2px #0000001f;
-  border-radius: 4px;
-  overflow: auto;
-}
-
-.leaf-dropdown-item {
-  padding: 0.5rem 0.5rem;
-  cursor: pointer;
-  &:hover {
-    background-color: var(--leaf-primary-98);
-  }
-  &[data-focused="true"] {
-    background-color: var(--leaf-primary-98);
-  }
 }

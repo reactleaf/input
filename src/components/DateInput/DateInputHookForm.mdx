@@ -1,0 +1,37 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/blocks"
+import * as Stories from "./DateInputHookForm.stories"
+
+<Meta name="HookForm" of={Stories} />
+
+# \<DateInput />
+
+`@reactleaf/input` provides `react-hook-form` supported version of DateInput.
+
+<Canvas of={Stories.HookForm} />
+
+### Usage
+
+```tsx
+import { useForm, FormProvider } from "react-hook-form"
+import { DateInput } from "@reactleaf/input/hookform"
+
+function FormComponent() {
+  const form = useForm()
+
+  return (
+    <FormProvider {...form}>
+      <DateInput name="date" label="Date" />
+    </FormProvider>
+  )
+}
+```
+
+### Types
+
+checkout the [react-datepicker documentation](https://github.com/Hacker0x01/react-datepicker/blob/main/docs/datepicker.md) for more details.
+
+### Extended Props
+
+`<DateInput />` extends almost all props of `react-datepicker`, And add some props for `<Controller />` such as `name` or `rules`.
+
+<ArgTypes of={Stories.HookForm} include={["label", "errorMessage"]} />

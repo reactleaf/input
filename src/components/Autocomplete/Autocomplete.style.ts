@@ -10,8 +10,9 @@ export function getStyle<Option, isMulti extends boolean, Group extends GroupBas
   return {
     control: (base, props) => ({
       ...base,
+      width: "100%",
       boxShadow: "none",
-      backgroundColor: props.isDisabled ? "var(--leaf-grey-95, #EDEEF0)" : "white",
+      backgroundColor: props.isDisabled ? "var(--leaf-grey-95)" : "white",
       borderColor: props.isFocused
         ? "var(--leaf-primary-60)"
         : isError
