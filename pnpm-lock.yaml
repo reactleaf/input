@@ -9,8 +9,8 @@ overrides:
 
 dependencies:
   '@reactleaf/theme':
-    specifier: 2.0.0
-    version: 2.0.0
+    specifier: 2.0.2
+    version: 2.0.2
   classnames:
     specifier: ^2.3.2
     version: 2.3.2
@@ -4109,9 +4109,10 @@ packages:
       '@babel/runtime': 7.23.2
     dev: true
 
-  /@reactleaf/theme@2.0.0:
-    resolution: {integrity: sha512-gtbHdFrwpMs8uWOsoRxRQZ6IjigtDx4QD1QwHt/mJZp+kB2wACyF6MWq+jSm7UukvB7+zCZffkx+GGi/jS52iQ==}
+  /@reactleaf/theme@2.0.2:
+    resolution: {integrity: sha512-Nn6VXycnq7qjE9yElmXUV+cX2rW/Qh7kKbcNlwlaxzH9Jip6hn4BiUMKQHz6bIYbmU6Vsdzbq621VXtpwO6YlQ==}
     dependencies:
+      '@types/culori': 2.1.0
       culori: 3.3.0
     dev: false
 
@@ -5497,6 +5498,10 @@ packages:
     dependencies:
       '@types/node': 20.10.6
     dev: true
+
+  /@types/culori@2.1.0:
+    resolution: {integrity: sha512-4uJT5CcC9Mi8mACkWShsPHqILMWL0OqoTsfoLJUGzN1mcipcepmmEdzU8b9L1KwyRNN3rnQO39ylI/2VR850zw==}
+    dev: false
 
   /@types/debug@4.1.10:
     resolution: {integrity: sha512-tOSCru6s732pofZ+sMv9o4o3Zc+Sa8l3bxd/tweTQudFn06vAzb13ZX46Zi6m6EJ+RUbRTHvgQJ1gBtSgkaUYA==}

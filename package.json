@@ -20,7 +20,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@reactleaf/theme": "2.0.0",
+    "@reactleaf/theme": "2.0.2",
     "classnames": "^2.3.2",
     "date-fns": "^3.3.1",
     "react-datepicker": "^6.1.0",
