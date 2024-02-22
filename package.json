@@ -1,7 +1,7 @@
 {
   "name": "@reactleaf/input",
   "type": "module",
-  "version": "0.5.0",
+  "version": "0.6.1",
   "description": "Variable React Input components",
   "main": "dist/index.js",
   "exports": {
@@ -22,9 +22,7 @@
   "dependencies": {
     "@reactleaf/theme": "2.0.2",
     "classnames": "^2.3.2",
-    "date-fns": "^3.3.1",
-    "react-datepicker": "^6.1.0",
-    "react-select": "^5.8.0"
+    "date-fns": "^3.3.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.21.4",
@@ -48,8 +46,6 @@
     "install-peers-cli": "^2.2.0",
     "prettier": "^2.8.7",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "storybook": "^7.6.6",
     "tsc-alias": "^1.8.8",
@@ -63,7 +59,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build": "rm -rf dist && pnpm run build:common && pnpm run build:types",
-    "build:common": "esbuild src/index.ts src/hookform.ts --bundle --platform=node --outdir=dist --format=esm --external:react-dom --external:react --external:react-hook-form",
+    "build:common": "esbuild src/index.ts src/hookform.ts --bundle --platform=node --outdir=dist --format=esm --external:react-dom --external:react --external:react-hook-form --external:react-select --external:react-datepicker",
     "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
     "chromatic": "chromatic --project-token=baa9a92dee01 --auto-accept-changes",
     "prepublishOnly": "npm run build"
@@ -73,8 +69,10 @@
   },
   "homepage": "https://github.com/reactleaf/input#readme",
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.47.0"
+    "react": "^18",
+    "react-datepicker": "^6.1.0",
+    "react-dom": "^18",
+    "react-hook-form": "^7.47.0",
+    "react-select": "^5.8.0"
   }
 }

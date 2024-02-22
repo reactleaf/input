@@ -6,10 +6,10 @@ Variable Input components
 
 ## Usage
 
-@reactleaf/input required react-hook-form as peer dependency.
+@reactleaf/input requires `react-select` and `react-datepicker` as peer dependency.
 
 ```sh
-pnpm add @reactleaf/input
+pnpm add @reactleaf/input react-hook-form react-select react-datepicker
 ```
 
 ```tsx
@@ -26,7 +26,7 @@ function YourComponent() {
 Install with `react-hook-form`
 
 ```sh
-pnpm add @reactleaf/input react-hook-form
+pnpm add @reactleaf/input react-hook-form react-select
 ```
 
 ```tsx

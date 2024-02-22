@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import DatePicker, { ReactDatePickerProps } from "react-datepicker"
+import ReactDatePicker, { ReactDatePickerProps } from "react-datepicker"
 import Calendar from "./icons/Calendar"
 import cx from "classnames"
 
@@ -11,10 +11,10 @@ export interface Props extends ReactDatePickerProps {
   errorMessage?: string
 }
 
-export default React.forwardRef(function DateInput(
-  { label, errorMessage, ...props }: Props,
-  ref: React.Ref<DatePicker>
-) {
+// re-export issue
+const DatePicker = (ReactDatePicker as unknown as { default: typeof ReactDatePicker }).default ?? ReactDatePicker
+
+export default function DateInput({ label, errorMessage, ...props }: Props) {
   function isFilled(value: unknown) {
     return value !== "" && value !== null && value !== undefined
   }
@@ -51,14 +51,14 @@ export default React.forwardRef(function DateInput(
         <label className="leaf-label">{label}</label>
       </div>
       <DatePicker
-        ref={ref}
         fixedHeight
+        showIcon
+        icon={<Calendar className="react-datepicker__calendar-icon" color="currentColor" />}
         {...props}
         wrapperClassName="leaf-input-area"
         className="leaf-input"
         clearButtonClassName="leaf-clear-button"
         isClearable={props.isClearable ?? true}
-        icon={<Calendar className="react-datepicker__calendar-icon" color="currentColor" />}
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -68,4 +68,4 @@ export default React.forwardRef(function DateInput(
       </div>
     </div>
   )
-})
+}

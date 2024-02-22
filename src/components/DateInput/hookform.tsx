@@ -4,7 +4,11 @@ import React from "react"
 import PureDateInput, { Props } from "."
 import { Controller, UseControllerProps } from "react-hook-form"
 
-interface HookFormProps extends Omit<Props, "name" | "defaultValue" | "value" | "errorMessage">, UseControllerProps {}
+interface HookFormProps
+  extends Omit<Props, "name" | "defaultValue" | "value" | "errorMessage" | "onChange">,
+    UseControllerProps {
+  onChange?: Props["onChange"]
+}
 
 export default function DateInput(props: HookFormProps) {
   const { name, rules, defaultValue, control, shouldUnregister, ...inputProps } = props

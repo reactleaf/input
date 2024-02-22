@@ -32,11 +32,13 @@
       border-color: var(--leaf-status-red);
     }
   }
+
   &.disabled {
     .leaf-input {
       background-color: var(--leaf-grey-95);
     }
   }
+
   &:not(.disabled):not(.filled):not(.focused):not(.error):hover {
     .leaf-input:not(:focus) {
       border-color: var(--leaf-grey-70);
