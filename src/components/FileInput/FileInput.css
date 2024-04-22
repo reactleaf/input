@@ -1,6 +1,33 @@
 .leaf-file-input {
-  .leaf-input-area {
+  & .leaf-input-area {
+    box-sizing: border-box;
     height: 4.5rem;
+    border: 1px solid;
+    border-radius: 4px;
+  }
+
+  &.filled {
+    & .leaf-input-area {
+      border-color: var(--leaf-grey-10);
+    }
+  }
+
+  &.focused {
+    & .leaf-input-area {
+      border-color: var(--leaf-primary-60);
+    }
+  }
+
+  &.error {
+    & .leaf-input-area {
+      border-color: var(--leaf-status-red);
+    }
+  }
+
+  &:not(.disabled):not(.filled):not(.focused):not(.error) {
+    & .leaf-input-area:not(:focus) {
+      border-color: var(--leaf-grey-70);
+    }
   }
 }
 
