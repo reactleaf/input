@@ -1,7 +1,7 @@
 {
   "name": "@reactleaf/input",
   "type": "module",
-  "version": "0.6.1",
+  "version": "0.6.2-beta",
   "description": "Variable React Input components",
   "main": "dist/index.js",
   "exports": {
@@ -59,7 +59,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build": "rm -rf dist && pnpm run build:common && pnpm run build:types",
-    "build:common": "esbuild src/index.ts src/hookform.ts --bundle --platform=node --outdir=dist --format=esm --external:react-dom --external:react --external:react-hook-form --external:react-select --external:react-datepicker",
+    "build:common": "esbuild src/index.ts src/hookform.ts --bundle --minify --platform=node --outdir=dist --format=esm --external:react-dom --external:react --external:react-hook-form --external:react-select --external:react-datepicker",
     "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly",
     "chromatic": "chromatic --project-token=baa9a92dee01 --auto-accept-changes",
     "prepublishOnly": "npm run build"
@@ -74,6 +74,17 @@
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
     "react-select": "^5.8.0"
+  },
+  "peerDependenciesMeta": {
+    "react-datepicker": {
+      "optional": true
+    },
+    "react-hook-form": {
+      "optional": true
+    },
+    "react-select": {
+      "optional": true
+    }
   },
   "packageManager": "pnpm@9.1.0+sha256.22e36fba7f4880ecf749a5ca128b8435da085ecd49575e7fb9e64d6bf4fad394"
 }

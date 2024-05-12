@@ -6,10 +6,8 @@ Variable Input components
 
 ## Usage
 
-@reactleaf/input requires `react-select` and `react-datepicker` as peer dependency.
-
 ```sh
-pnpm add @reactleaf/input react-hook-form react-select react-datepicker
+pnpm add @reactleaf/input
 ```
 
 ```tsx
@@ -21,12 +19,16 @@ function YourComponent() {
 }
 ```
 
+### Using Autocomplete, Combobox or DateInput
+
+@reactleaf/input optionally requires `react-select` and `react-datepicker` as peer dependency.
+
 ### Use with react-hook-form
 
 Install with `react-hook-form`
 
 ```sh
-pnpm add @reactleaf/input react-hook-form react-select
+pnpm add @reactleaf/input react-hook-form
 ```
 
 ```tsx
