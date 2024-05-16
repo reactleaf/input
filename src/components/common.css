@@ -172,3 +172,137 @@
   line-height: 0;
   cursor: pointer;
 }
+
+/* NumberInput */
+.leaf-number-prefix {
+  position: absolute;
+  bottom: 50%;
+  left: 0.5rem;
+  padding-right: 0.25em;
+  padding-top: 2px;
+  transform: translateY(50%);
+  color: var(--leaf-primary-10);
+  opacity: 0.5;
+}
+
+/* FileInput */
+.leaf-file-input {
+  & .leaf-input-area {
+    box-sizing: border-box;
+    height: 4.5rem;
+    border: 1px solid;
+    border-radius: 4px;
+  }
+
+  &.filled {
+    & .leaf-input-area {
+      border-color: var(--leaf-grey-10);
+    }
+  }
+
+  &.focused {
+    & .leaf-input-area {
+      border-color: var(--leaf-primary-60);
+    }
+  }
+
+  &.error {
+    & .leaf-input-area {
+      border-color: var(--leaf-status-red);
+    }
+  }
+
+  &:not(.disabled):not(.filled):not(.focused):not(.error) {
+    & .leaf-input-area:not(:focus) {
+      border-color: var(--leaf-grey-70);
+    }
+  }
+}
+
+.leaf-file-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.leaf-file-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--leaf-grey-10);
+}
+
+.leaf-file-size {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+  padding-right: 0.25rem;
+  /* ${({ theme }) => theme.typo.label}; */
+  color: var(--leaf-grey-70);
+  &.error {
+    color: var(--leaf-status-red);
+  }
+}
+
+.leaf-file__url-input {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(0.25rem);
+  & button {
+    height: 2rem;
+  }
+}
+
+.leaf-file__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: none;
+  opacity: 0;
+  transition: backdrop-filter 0.2s, opacity 0.2s;
+  &:hover {
+    opacity: 1;
+    backdrop-filter: blur(0.25rem);
+  }
+  & button {
+    background: white;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    &:hover {
+      background: var(--leaf-primary-95);
+    }
+  }
+}
+
+/* DateInput */
+.react-datepicker__input-container {
+  display: flex;
+}
+
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+  height: 20px;
+}
+.react-datepicker__view-calendar-icon input.leaf-input {
+  padding: 0 0.5rem 0 1.75rem;
+}

@@ -5,8 +5,6 @@ import useInnerRef from "@/hooks/useInnerRef"
 
 import { formatNumber, formatNumberWithCommas, parseNumber } from "./formatter"
 
-import "./NumberInput.css"
-
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
   label?: string
   clearable?: boolean

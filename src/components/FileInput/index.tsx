@@ -9,7 +9,6 @@ import { FileSource } from "./types"
 
 import { formatFileSize, getFileName, getFileSize } from "./utils"
 import TextInput from "../TextInput"
-import "./FileInput.css"
 
 export interface Props extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "value"> {
   label?: string

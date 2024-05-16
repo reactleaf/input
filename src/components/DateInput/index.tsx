@@ -4,7 +4,6 @@ import Calendar from "./icons/Calendar"
 import cx from "classnames"
 
 import "react-datepicker/dist/react-datepicker.css"
-import "./DateInput.css"
 
 export interface Props extends ReactDatePickerProps {
   label?: string

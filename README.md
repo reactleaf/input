@@ -11,7 +11,7 @@ pnpm add @reactleaf/input
 ```
 
 ```tsx
-import { TextInput } from "@reactleaf/input"
+import TextInput from "@reactleaf/input/TextInput"
 
 function YourComponent() {
   const [value, setValue] = useState()
@@ -19,13 +19,9 @@ function YourComponent() {
 }
 ```
 
-### Using Autocomplete, Combobox or DateInput
+### Use with hook-form-ready components
 
-@reactleaf/input optionally requires `react-select` and `react-datepicker` as peer dependency.
-
-### Use with react-hook-form
-
-Install with `react-hook-form`
+Install `react-hook-form`
 
 ```sh
 pnpm add @reactleaf/input react-hook-form
@@ -33,7 +29,7 @@ pnpm add @reactleaf/input react-hook-form
 
 ```tsx
 import useForm, { FormProvider } from "react-hook-form"
-import { TextInput } from "@reactleaf/input/hookform"
+import TextInput from "@reactleaf/input/TextInput/hookform"
 
 function YourComponent() {
   const form = useForm()
@@ -42,5 +38,23 @@ function YourComponent() {
       <TextInput name="hook-form-name" />
     </FormProvider>
   )
+}
+```
+
+### Using Autocomplete, Combobox or DateInput
+
+Autocomplete and Combobox depends on `react-select` and\
+DateInput depends on `react-datepicker`.
+
+```sh
+pnpm add @reactleaf/input react-datepicker
+```
+
+```tsx
+import DateInput from "@reactleaf/input/DateInput"
+
+function YourComponent() {
+  const [value, setValue] = useState()
+  return <DateInput value={value} onSelect={setValue} />
 }
 ```

@@ -15,6 +15,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "files": ["src/index.ts", "src/hookform.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "esbuild.mjs", "src/**/*.stories.tsx"]
 }
