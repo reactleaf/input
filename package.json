@@ -1,24 +1,12 @@
 {
   "name": "@reactleaf/input",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Variable React Input components",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
-    "./Autocomplete": "./dist/Autocomplete/index.js",
-    "./Autocomplete/hookform": "./dist/Autocomplete/hookform.js",
-    "./Combobox": "./dist/Combobox/index.js",
-    "./Combobox/hookform": "./dist/Combobox/hookform.js",
-    "./DateInput": "./dist/DateInput/index.js",
-    "./DateInput/hookform": "./dist/DateInput/hookform.js",
-    "./FileInput": "./dist/FileInput/index.js",
-    "./FileInput/hookform": "./dist/FileInput/hookform.js",
-    "./NumberInput": "./dist/NumberInput/index.js",
-    "./NumberInput/hookform": "./dist/NumberInput/hookform.js",
-    "./PasswordInput": "./dist/PasswordInput/index.js",
-    "./PasswordInput/hookform": "./dist/PasswordInput/hookform.js",
-    "./TextInput": "./dist/TextInput/index.js",
-    "./TextInput/hookform": "./dist/TextInput/hookform.js"
+    "./*": "./dist/*/index.js",
+    "./*/hookform": "./dist/*/hookform.js"
   },
   "repository": {
     "type": "git",
