@@ -6,6 +6,7 @@ src
 
 .storybook
 stories
+storybook-static
 
 .tsconfig.build.json
 .tsconfig.json
