@@ -14,8 +14,8 @@ const entryPoints = await Promise.all(files).then((tsxs) => tsxs.flat())
 await esbuild.build({
   entryPoints: entryPoints,
   outdir: "dist",
-  outbase: "src/components",
-  format: "esm",
+  outbase: "src",
+  format: "cjs",
   platform: "node",
   bundle: true,
   minify: true,
@@ -23,17 +23,26 @@ await esbuild.build({
 })
 
 await esbuild.build({
+  entryPoints: ["src/index.ts"],
+  outfile: "dist/index.js",
+  format: "cjs",
+  platform: "node",
+  bundle: false,
+  minify: false,
+})
+
+await esbuild.build({
   entryPoints: ["src/index.css"],
-  outdir: "dist",
+  outfile: "dist/style.css",
   bundle: true,
 })
 
-const dtsDir = await fs.readdir("dist/components")
-dtsDir.forEach(async (dir) => {
-  await fs.rename(`dist/components/${dir}/index.d.ts`, `dist/${dir}/index.d.ts`)
-  await fs.rename(`dist/components/${dir}/hookform.d.ts`, `dist/${dir}/hookform.d.ts`)
-})
+// const dtsDir = await fs.readdir("dist/components")
+// dtsDir.forEach(async (dir) => {
+//   await fs.rename(`dist/components/${dir}/index.d.ts`, `dist/${dir}/index.d.ts`)
+//   await fs.rename(`dist/components/${dir}/hookform.d.ts`, `dist/${dir}/hookform.d.ts`)
+// })
 
-await fs.rm("dist/components", { recursive: true })
+// await fs.rm("dist/components", { recursive: true })
 await fs.rm("dist/hooks", { recursive: true })
 await fs.rm("dist/utils", { recursive: true })

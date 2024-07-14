@@ -10,15 +10,17 @@ const meta: Meta<typeof Combobox> = {
 
 export default meta
 
+const sampleOptions = [
+  { label: "Option 1", value: "Option 1" },
+  { label: "Option 2", value: "Option 2" },
+  { label: "Option 3", value: "Option 3" },
+]
+
 export const HookForm: StoryObj<typeof Combobox> = {
   args: {
     label: "Label",
     placeholder: "Placeholder",
-    options: [
-      { label: "Option 1", value: "Option 1" },
-      { label: "Option 2", value: "Option 2" },
-      { label: "Option 3", value: "Option 3" },
-    ],
+    options: sampleOptions,
   },
   argTypes: {
     name: {
@@ -32,7 +34,7 @@ export const HookForm: StoryObj<typeof Combobox> = {
     },
   },
   render: (args) => {
-    const form = useForm({ defaultValues: { option: "Option 1" } })
+    const form = useForm({ defaultValues: { option: sampleOptions[0] } })
     return (
       <FormProvider {...form}>
         <Combobox {...args} name="option" label="Label" />

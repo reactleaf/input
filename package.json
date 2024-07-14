@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
-    "./*": "./dist/*/index.js",
-    "./*/hookform": "./dist/*/hookform.js"
+    ".": "./dist/index.js",
+    "./style.css": "./dist/style.css",
+    "./*": "./dist/components/*/index.js",
+    "./hookform/*": "./dist/components/*/hookform.js"
   },
   "repository": {
     "type": "git",
