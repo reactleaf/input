@@ -17,6 +17,8 @@ export function getStyle<Option, isMulti extends boolean, Group extends GroupBas
         ? "var(--leaf-primary-60)"
         : isError
         ? "var(--leaf-status-red)"
+        : props.hasValue
+        ? "var(--leaf-grey-10)"
         : "var(--leaf-grey-80)",
       "&:hover": {
         borderColor: props.isFocused

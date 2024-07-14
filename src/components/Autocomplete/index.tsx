@@ -12,6 +12,9 @@ export interface Props
 
 export default function Autocomplete({ label, errorMessage, ...props }: Props) {
   function isFilled(value: unknown) {
+    if (value instanceof Array) {
+      return value.length > 0
+    }
     return value !== "" && value !== null && value !== undefined
   }
 
@@ -30,7 +33,6 @@ export default function Autocomplete({ label, errorMessage, ...props }: Props) {
 
   function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
     props.onBlur?.(e)
-    setFilled(isFilled(e.currentTarget.value))
     setFocused(false)
   }
 

@@ -1,10 +1,12 @@
 import React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 import Autocomplete from "@/components/Autocomplete"
+import { fn } from "@storybook/test"
 
 const meta: Meta<typeof Autocomplete> = {
   title: "Components/Autocomplete",
   component: Autocomplete,
+  args: { onChange: fn() },
 }
 
 export default meta
@@ -77,7 +79,12 @@ export const Playground: StoryObj<typeof Autocomplete> = {
   args: {
     label: "Playground",
     placeholder: "Placeholder",
-    options: [{ label: "Option 1" }, { label: "Option 2" }, { label: "Option 3" }],
+    options: [
+      { label: "Option 1", value: "Option 1" },
+      { label: "Option 2", value: "Option 2" },
+      { label: "Option 3", value: "Option 3" },
+    ],
+    isMulti: true,
   },
   argTypes: {
     label: {

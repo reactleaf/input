@@ -5,26 +5,29 @@ import cx from "classnames"
 
 interface Option {
   label: string
-  value: string | number | boolean
+  value: primitive
 }
 
-export interface Props extends Omit<SelectProps<Option, false>, "className" | "classNamePrefix" | "styles"> {
+export interface Props extends Omit<SelectProps<Option, boolean>, "className" | "classNamePrefix" | "styles"> {
   label?: string
   errorMessage?: string
 }
 
-export default React.forwardRef<SelectInstance<Option, false>, Props>(function Combobox(
+export default React.forwardRef<SelectInstance<Option, boolean>, Props>(function Combobox(
   { label, errorMessage, ...props }: Props,
   ref
 ) {
   function isFilled(value: unknown) {
+    if (value instanceof Array) {
+      return value.length > 0
+    }
     return value !== "" && value !== null && value !== undefined
   }
 
   const [filled, setFilled] = useState(isFilled(props.value))
   const [focused, setFocused] = useState(false)
 
-  function handleChange(newValue: OnChangeValue<Option, false>, meta: ActionMeta<Option>) {
+  function handleChange(newValue: OnChangeValue<Option, boolean>, meta: ActionMeta<Option>) {
     props.onChange?.(newValue, meta)
     setFilled(isFilled(newValue))
   }
@@ -36,7 +39,6 @@ export default React.forwardRef<SelectInstance<Option, false>, Props>(function C
 
   function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
     props.onBlur?.(e)
-    setFilled(isFilled(e.currentTarget.value))
     setFocused(false)
   }
 
@@ -52,7 +54,7 @@ export default React.forwardRef<SelectInstance<Option, false>, Props>(function C
       <div className="leaf-label-area">
         <label className="leaf-label">{label}</label>
       </div>
-      <Select<Option, false>
+      <Select<Option, boolean>
         {...props}
         ref={ref}
         className="leaf-input-area"
