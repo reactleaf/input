@@ -4,7 +4,7 @@ import Autocomplete from "@/components/Autocomplete"
 import { fn } from "@storybook/test"
 
 const meta: Meta<typeof Autocomplete> = {
-  title: "Components/Autocomplete",
+  title: "Components/Dropdown/Autocomplete",
   component: Autocomplete,
   args: { onChange: fn() },
 }

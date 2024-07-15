@@ -5,7 +5,7 @@ import FileInput from "@/components/FileInput/hookform"
 import { FormProvider, useForm } from "react-hook-form"
 
 const meta: Meta<typeof FileInput> = {
-  title: "Components/FileInput",
+  title: "Components/Basic/FileInput",
   component: FileInput,
 }
 

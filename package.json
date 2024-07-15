@@ -2,13 +2,15 @@
   "name": "@reactleaf/input",
   "version": "1.0.0-beta.2",
   "description": "Variable React Input components",
-  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js",
-    "./style.css": "./dist/style.css",
-    "./*": "./dist/components/*/index.js",
-    "./hookform/*": "./dist/components/*/hookform.js"
+    ".": "./dist/exports/basic.js",
+    "./hookform": "./dist/exports/basic-hf.js",
+    "./calendar": "./dist/exports/calendar.js",
+    "./calendar/hookform": "./dist/exports/calendar-hf.js",
+    "./dropdown": "./dist/exports/dropdown.js",
+    "./dropdown/hookform": "./dist/exports/dropdown-hf.js",
+    "./style.css": "./dist/style.css"
   },
   "repository": {
     "type": "git",

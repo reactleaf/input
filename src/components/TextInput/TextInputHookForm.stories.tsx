@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import TextInput from "@/components/TextInput/hookform"
 
 const meta: Meta<typeof TextInput> = {
-  title: "Components/TextInput",
+  title: "Components/Basic/TextInput",
   component: TextInput,
 }
 

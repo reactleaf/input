@@ -5,7 +5,7 @@ import NumberInput from "@/components/NumberInput/hookform"
 import { FormProvider, useForm } from "react-hook-form"
 
 const meta: Meta<typeof NumberInput> = {
-  title: "Components/NumberInput",
+  title: "Components/Basic/NumberInput",
   component: NumberInput,
 }
 

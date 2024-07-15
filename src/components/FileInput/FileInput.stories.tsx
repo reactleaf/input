@@ -5,7 +5,7 @@ import FileInput from "@/components/FileInput"
 import { FileSource } from "./types"
 
 const meta: Meta<typeof FileInput> = {
-  title: "Components/FileInput",
+  title: "Components/Basic/FileInput",
   component: FileInput,
 }
 

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import DateInput from "@/components/DateInput"
 
 const meta: Meta<typeof DateInput> = {
-  title: "Components/DateInput",
+  title: "Components/Calendar/DateInput",
   component: DateInput,
 }
 

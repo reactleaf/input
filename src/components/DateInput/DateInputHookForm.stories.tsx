@@ -4,7 +4,7 @@ import DateInput from "@/components/DateInput/hookform"
 import { FormProvider, useForm } from "react-hook-form"
 
 const meta: Meta<typeof DateInput> = {
-  title: "Components/DateInput",
+  title: "Components/Calendar/DateInput",
   component: DateInput,
 }
 

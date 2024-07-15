@@ -3,7 +3,7 @@ import Combobox from "@/components/Combobox"
 import { fn } from "@storybook/test"
 
 const meta: Meta<typeof Combobox> = {
-  title: "Components/Combobox",
+  title: "Components/Dropdown/Combobox",
   component: Combobox,
   args: { onChange: fn() },
 }

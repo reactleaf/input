@@ -4,7 +4,7 @@ import Combobox from "@/components/Combobox/hookform"
 import { FormProvider, useForm } from "react-hook-form"
 
 const meta: Meta<typeof Combobox> = {
-  title: "Components/Combobox",
+  title: "Components/Dropdown/Combobox",
   component: Combobox,
 }
 

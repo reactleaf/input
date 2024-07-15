@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react"
 import NumberInput from "@/components/NumberInput"
 
 const meta: Meta<typeof NumberInput> = {
-  title: "Components/NumberInput",
+  title: "Components/Basic/NumberInput",
   component: NumberInput,
 }
 

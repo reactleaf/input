@@ -16,7 +16,17 @@ const preview: Preview = {
     docs: { source: { language: "tsx", transform: sourceTransform } },
     options: {
       storySort: {
-        order: ["Getting Started", "Components", ["TextInput", "NumberInput", "FileInput"]],
+        order: [
+          "Getting Started",
+          "Components",
+          [
+            "Basic",
+            ["TextInput", "NumberInput", "PasswordInput", "FileInput"],
+            "Calendar",
+            "Dropdown",
+            ["Combobox", "Autocomplete"],
+          ],
+        ],
       },
     },
   },

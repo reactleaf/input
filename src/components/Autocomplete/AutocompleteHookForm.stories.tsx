@@ -4,7 +4,7 @@ import Autocomplete from "@/components/Autocomplete/hookform"
 import { FormProvider, useForm } from "react-hook-form"
 
 const meta: Meta<typeof Autocomplete> = {
-  title: "Components/Autocomplete",
+  title: "Components/Dropdown/Autocomplete",
   component: Autocomplete,
 }
 
